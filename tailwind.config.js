@@ -1,6 +1,9 @@
 module.exports = {
   darkMode: false,
   theme: {
+    transitionDuration: {
+      DEFAULT: '40ms',
+    },
     extend: {
       colors: {
         steel: {

@@ -6,10 +6,12 @@
     "dev": "nuxt",
     "generate": "nuxt generate --modern"
   },
-  "dependencies": {},
+  "dependencies": {
+    "vue2-touch-events": "https://github.com/tinawng/vue-touch-events"
+  },
   "devDependencies": {
-    "nuxt": "latest",
     "@nuxtjs/tailwindcss": "latest",
+    "nuxt": "latest",
     "postcss": "^8.3.6"
   }
 }

@@ -3,6 +3,10 @@ export default {
   target: 'static',
   ssr: false,
 
+  server: {
+    host: "0.0.0.0"
+  },
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'Tina Nuxt/Tailwind Template',
@@ -32,7 +36,7 @@ export default {
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: [{ src: '@/plugins/vue2-touch-events.js' }],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
