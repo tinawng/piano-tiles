@@ -59,20 +59,6 @@ export default {
     this.ctx.moveTo(this.canvas_width * 0.75, 0);
     this.ctx.lineTo(this.canvas_width * 0.75, this.canvas_height);
     this.ctx.stroke();
-
-    // Add rounded rectangle to canvas drawing palette
-    CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
-      if (w < 2 * r) r = w / 2;
-      if (h < 2 * r) r = h / 2;
-      this.beginPath();
-      this.moveTo(x + r, y);
-      this.arcTo(x + w, y, x + w, y + h, r);
-      this.arcTo(x + w, y + h, x, y + h, r);
-      this.arcTo(x, y + h, x, y, r);
-      this.arcTo(x, y, x + w, y, r);
-      this.closePath();
-      return this;
-    };
   },
 
   methods: {
