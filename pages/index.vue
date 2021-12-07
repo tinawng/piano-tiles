@@ -62,7 +62,7 @@ export default {
 
     // Add keyboard event listener
     document.addEventListener("keydown", (event) => {
-      let key_id = event.key == "d" ? 0 : event.key == "f" ? 1 : event.key == "j" ? 2 : event.key == "k" ? 3 : null;
+      let key_id = event.key == "f" ? 0 : event.key == "g" ? 1 : event.key == "h" ? 2 : event.key == "j" ? 3 : null;
       console.log(`{ "key": ${key_id}, "time": ${this.curr_timestamp - 20} },`);
       console.log('Score', this.score)
       this.score = this.score + this.GetPoints(key_id, this.curr_timestamp - 20);
