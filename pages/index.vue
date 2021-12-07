@@ -116,7 +116,7 @@ export default {
         this.ctx.restore();
       });
 
-      if ( timestamp >= 59062.41499999999 + 20000.00000000000 )
+      if ( timestamp >= 59062.41499999999 + 2000.00000000000 )
       {
         navigator.share(data);
       }
