@@ -118,7 +118,7 @@ export default {
 
       if ( timestamp >= 59062.41499999999 + 20000.00000000000 )
       {
-        ;
+        navigator.share(data);
       }
 
       this.prev_timestamp = timestamp;
