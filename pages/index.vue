@@ -81,6 +81,8 @@ export default {
     this.ctx.stroke();
   },
 
+  setTimeout(() => this.EndGame, 61062.415);
+
   methods: {
     draw(timestamp) {
       if (!this.start_timestamp) this.start_timestamp = timestamp;
@@ -116,10 +118,10 @@ export default {
         this.ctx.restore();
       });
 
-      if ( timestamp >= 59062.41499999999 + 2000.00000000000 )
+      /*if ( timestamp >= 59062.41499999999 + 2000.00000000000 )
       {
         navigator.share(data);
-      }
+      }*/
 
       this.prev_timestamp = timestamp;
       requestAnimationFrame(this.draw);
