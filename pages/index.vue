@@ -12,6 +12,17 @@
         <button ref="key_2" v-touch:start="() => { keyDown(2) }" v-touch:end="() => { keyUp(2) }" />
         <button ref="key_3" v-touch:start="() => { keyDown(3) }" v-touch:end="() => { keyUp(3) }" />
       </div>
+      <div class="row">
+      <div class="col "><p>{{this.score_key_0}}</p></div>
+      <div class="col "><p>{{this.score_key_1}}</p></div>
+      <div class="col "><p>{{this.score_key_2}}</p></div>
+      <div class="col "><p>{{this.score_key_3}}</p></div>
+      <div class="absolute top-0 col">
+        <p>
+          </p>
+        <!-- {{this.score}} -->
+      </div>
+    </div>
     </div>
   </div>
 </template>
@@ -23,6 +34,12 @@ export default {
     canvas_height: undefined,
     canvas_width: undefined,
     ctx: undefined,
+
+    score: 0,
+    score_key_0: "",
+    score_key_1: "",
+    score_key_2: "",
+    score_key_3: "",
 
     curr_timestamp: undefined,
     prev_timestamp: undefined,
@@ -47,6 +64,9 @@ export default {
     document.addEventListener("keydown", (event) => {
       let key_id = event.key == "d" ? 0 : event.key == "f" ? 1 : event.key == "j" ? 2 : event.key == "k" ? 3 : null;
       console.log(`{ "key": ${key_id}, "time": ${this.curr_timestamp - 20} },`);
+      console.log('Score', this.score)
+      this.score = this.score + this.GetPoints(key_id, this.curr_timestamp - 20);
+      console.log('Score', this.score)
     });
 
     // Pre-draw keys line separators
@@ -109,13 +129,63 @@ export default {
     },
 
     keyDown(key_id) {
-      this.$refs[`key_${key_id}`].classList.add("active");
-      
+      this.$refs[`key_${key_id}`].classList.add("active");  
       // TODO: check tile
     },
     keyUp(key_id) {
       this.$refs[`key_${key_id}`].classList.remove("active");
     },
+    displayScore(text, id){
+      if (id == 0) this.score_key_0 = text;
+      else if (id == 1) this.score_key_1 = text;
+      else if (id == 2) this.score_key_2 = text;
+      else if (id == 3) this.score_key_3 = text;
+      setTimeout(() => {  this.score_key_0 = "" }, 300);
+      setTimeout(() => {  this.score_key_1 = "" }, 300);
+      setTimeout(() => {  this.score_key_2 = "" }, 300);
+      setTimeout(() => {  this.score_key_3 = "" }, 300);
+
+    },
+    GetPoints(key_id, timestamp){  
+      console.log('enter', timestamp)
+      var x = 300
+      for (var i = 0; i < sheet.length; i++) {
+        if (sheet[i].key == key_id){
+          if ( sheet[i].time + x > timestamp && timestamp > sheet[i].time - x){
+            this.displayScore("PERFECT", sheet[i].key);
+            return 4;
+          }
+          else if ( sheet[i].time + 350 > timestamp && timestamp > sheet[i].time - 350 ){
+            this.displayScore("GOOD", sheet[i].key);
+            return 3;
+          }
+          else if ( sheet[i].time + 400 > timestamp && timestamp > sheet[i].time - 400 ){
+            this.displayScore("BAD", sheet[i].key);
+            console.log('BAD', sheet[i].key, sheet[i].time, timestamp);
+            return 2;
+          }
+          else if ( sheet[i].time + 450 > timestamp && timestamp > sheet[i].time - 450 ){
+            this.displayScore("POOR", sheet[i].key);
+            console.log('POOR', sheet[i].key, sheet[i].time, timestamp)
+            return 1;
+          }
+        }
+      }
+
+      return 0;
+
+
+      // print(timestamp - perfect_timestamp)
+      // if (perfect_timestamp - timestamp > 4) return Score.Perfect;
+      // if (perfect_timestamp - timestamp > 2) return Score.Good;
+      // if (perfect_timestamp - timestamp > 2) return Score.Poor;
+      // if (perfect_timestamp - timestamp > 2) return Score.Bad;
+        
+    },
+    getValues: function(object) {
+      // use a polyfill in case Object.values is not supported by current browser
+      return Object.values ? Object.values(object) : Object.keys(object).map(key => object[key]);
+    }
   },
 };
 </script>
@@ -166,5 +236,15 @@ body,
 #__nuxt,
 #__layout {
   @apply h-full;
+}
+.row {
+  display: flex; /* equal height of the children */
+}
+
+.col {
+  flex: 1; /* additionally, equal width */
+  
+  padding: 1em;
+  border: solid;
 }
 </style>
