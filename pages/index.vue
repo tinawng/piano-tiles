@@ -120,7 +120,7 @@ export default {
 
       /*if ( timestamp >= 59062.41499999999 + 2000.00000000000 )
       {
-        navigator.share(data);
+        navigator.share(data); // var bragging = `I just scored ${score}, ${perfects} perfects and a strike of ${maxPerfects} on https://piano-king.com/play! Beat that!`;
       }*/
 
       this.prev_timestamp = timestamp;
