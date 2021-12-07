@@ -67,10 +67,15 @@ export default {
     // Add keyboard event listener
     document.addEventListener("keydown", (event) => {
       let key_id = event.key == "d" ? 0 : event.key == "f" ? 1 : event.key == "j" ? 2 : event.key == "k" ? 3 : null;
+      this.keyDown(key_id)
       console.log(`{ "key": ${key_id}, "time": ${this.curr_timestamp - 20} },`);
       console.log('Score', this.score)
       this.score = this.score + this.GetPoints(key_id, this.curr_timestamp - 20);
       console.log('Score', this.score)
+    });
+    document.addEventListener("keyup", (event) => {
+      let key_id = event.key == "d" ? 0 : event.key == "f" ? 1 : event.key == "j" ? 2 : event.key == "k" ? 3 : null;
+      this.keyUp(key_id)
     });
 
     // Pre-draw keys line separators
