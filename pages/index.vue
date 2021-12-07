@@ -116,6 +116,11 @@ export default {
         this.ctx.restore();
       });
 
+      if ( timestamp >= 59062.41499999999 + 20000.00000000000 )
+      {
+        ;
+      }
+
       this.prev_timestamp = timestamp;
       requestAnimationFrame(this.draw);
     },
