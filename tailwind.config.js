@@ -5,6 +5,9 @@ module.exports = {
       DEFAULT: '40ms',
     },
     extend: {
+      backgroundImage: {
+        'main-background': "url('assets/img/main-cover.jpeg')",
+      },
       colors: {
         steel: {
           '300': '#4C4C4C',
