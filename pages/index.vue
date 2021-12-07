@@ -22,6 +22,10 @@
           </p>
         <!-- {{this.score}} -->
       </div>
+      <div id="perfect" style="position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right;">
+        Perfects: {{ perfects }}
+        <br>Max Perfects: {{ maxPerfects }}
+      </div>
     </div>
     </div>
   </div>
@@ -40,6 +44,10 @@ export default {
     score_key_1: "",
     score_key_2: "",
     score_key_3: "",
+    perfects: 0,
+    maxPerfects: 0,
+    nextTileToType: sheet[0],
+    missed: 0,
 
     curr_timestamp: undefined,
     prev_timestamp: undefined,
@@ -103,6 +111,8 @@ export default {
       // Calculate speed
       let px_per_ms = this.canvas_height / this.scroll_speed;
 
+      let nextKeySeen = false
+
       // Tiles drawing
       sheet.forEach((tile) => {
         // 480: distance from bottom to button
@@ -143,6 +153,10 @@ export default {
       this.$refs[`key_${key_id}`].classList.remove("active");
     },
     displayScore(text, id){
+      if (text === "PERFECT") this.perfects++
+      else this.perfects = 0
+      this.maxPerfects = Math.max(this.perfects, this.maxPerfects)
+
       if (id == 0) this.score_key_0 = text;
       else if (id == 1) this.score_key_1 = text;
       else if (id == 2) this.score_key_2 = text;
@@ -253,5 +267,16 @@ body,
   
   padding: 1em;
   border: solid;
+}
+</style>
+<style>
+@font-face {
+  font-family: "Futura";
+  src: local("Futura"),
+   url(~assets/futura-pt-heavy.otf) format("truetype");
+}
+
+html {
+  font-family: "Futura";
 }
 </style>
