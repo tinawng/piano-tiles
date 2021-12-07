@@ -4,7 +4,6 @@
       <canvas ref="canvas"></canvas>
       <div class="absolute top-0">
         <audio ref="audio_player" src="/chicago.ogg" />
-        {{Math.floor(curr_timestamp)}}
       </div>
       <div class="buttons__container">
         <button ref="key_0" v-touch:start="() => { keyDown(0) }" v-touch:end="() => { keyUp(0) }" />
@@ -12,21 +11,18 @@
         <button ref="key_2" v-touch:start="() => { keyDown(2) }" v-touch:end="() => { keyUp(2) }" />
         <button ref="key_3" v-touch:start="() => { keyDown(3) }" v-touch:end="() => { keyUp(3) }" />
       </div>
-      <div class="row">
-      <div class="col "><p>{{this.score_key_0}}</p></div>
-      <div class="col "><p>{{this.score_key_1}}</p></div>
-      <div class="col "><p>{{this.score_key_2}}</p></div>
-      <div class="col "><p>{{this.score_key_3}}</p></div>
-      <div class="absolute top-0 col">
-        <p>
-          </p>
-        <!-- {{this.score}} -->
+      <div class="row" style="position: absolute; bottom: 0; width: 100%; height: 100px; display: flex; align-items: center; text-align: center; font-size: 1.8em;">
+        <div class="col "><p>{{this.score_key_0}}</p></div>
+        <div class="col "><p>{{this.score_key_1}}</p></div>
+        <div class="col "><p>{{this.score_key_2}}</p></div>
+        <div class="col "><p>{{this.score_key_3}}</p></div>
       </div>
       <div id="perfect" style="position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right;">
-        Perfects: {{ perfects }}
+        Score: {{ score }}
         <br>Max Perfects: {{ maxPerfects }}
+        <br>Perfects: {{ perfects }}
+        <br>Missed: {{ missed }}
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -39,15 +35,15 @@ export default {
     canvas_width: undefined,
     ctx: undefined,
 
-    score: 0,
     score_key_0: "",
     score_key_1: "",
     score_key_2: "",
     score_key_3: "",
     perfects: 0,
     maxPerfects: 0,
-    nextTileToType: sheet[0],
+    nextTileToType: 0,
     missed: 0,
+    score: 0,
 
     curr_timestamp: undefined,
     prev_timestamp: undefined,
@@ -70,7 +66,7 @@ export default {
 
     // Add keyboard event listener
     document.addEventListener("keydown", (event) => {
-      let key_id = event.key == "f" ? 0 : event.key == "g" ? 1 : event.key == "h" ? 2 : event.key == "j" ? 3 : null;
+      let key_id = event.key == "d" ? 0 : event.key == "f" ? 1 : event.key == "j" ? 2 : event.key == "k" ? 3 : null;
       console.log(`{ "key": ${key_id}, "time": ${this.curr_timestamp - 20} },`);
       console.log('Score', this.score)
       this.score = this.score + this.GetPoints(key_id, this.curr_timestamp - 20);
@@ -88,8 +84,6 @@ export default {
     this.ctx.lineTo(this.canvas_width * 0.75, this.canvas_height);
     this.ctx.stroke();
   },
-
-  setTimeout(() => this.EndGame, 61062.415);
 
   methods: {
     draw(timestamp) {
@@ -111,10 +105,8 @@ export default {
       // Calculate speed
       let px_per_ms = this.canvas_height / this.scroll_speed;
 
-      let nextKeySeen = false
-
       // Tiles drawing
-      sheet.forEach((tile) => {
+      sheet.forEach((tile, i) => {
         // 480: distance from bottom to button
         let start_position = -tile.time + (this.scroll_speed - 480);
         let x = this.canvas_width * 0.25 * tile.key + this.canvas_width * 0.125;
@@ -126,12 +118,17 @@ export default {
         this.ctx.arc(x, y, 22, 0, 2 * Math.PI);
         this.ctx.fill();
         this.ctx.restore();
-      });
 
       /*if ( timestamp >= 59062.41499999999 + 2000.00000000000 )
       {
         navigator.share(data); // var bragging = `I just scored ${score},\n${perfects} perfects and a strike of ${maxPerfects}\non https://piano-king.com/play! Beat that!`; //`You scored ${score}, ${perfects} perfects and a max strike of ${maxPerfects}. You are ${percent}% as skilled as the king. Share...`;
       }*/
+        if (i === this.nextTileToType && y > this.canvas_height *.9 + 500 * px_per_ms) {
+          this.missed++
+          this.nextTileToType++
+          this.displayScore("MISSED", tile.key)
+        }
+      });
 
       this.prev_timestamp = timestamp;
       requestAnimationFrame(this.draw);
@@ -139,14 +136,14 @@ export default {
 
     play() {
       if (this.is_playing) return;
-      
+
       this.$refs.audio_player.play();
       requestAnimationFrame(this.draw);
       this.is_playing = true;
     },
 
     keyDown(key_id) {
-      this.$refs[`key_${key_id}`].classList.add("active");  
+      this.$refs[`key_${key_id}`].classList.add("active");
       // TODO: check tile
     },
     keyUp(key_id) {
@@ -167,7 +164,7 @@ export default {
       setTimeout(() => {  this.score_key_3 = "" }, 300);
 
     },
-    GetPoints(key_id, timestamp){  
+    GetPoints(key_id, timestamp){
       console.log('enter', timestamp)
       var x = 300
       for (var i = 0; i < sheet.length; i++) {
@@ -193,6 +190,8 @@ export default {
         }
       }
 
+      this.missed++
+      this.displayScore("MISSED", key_id)
       return 0;
 
 
@@ -201,7 +200,7 @@ export default {
       // if (perfect_timestamp - timestamp > 2) return Score.Good;
       // if (perfect_timestamp - timestamp > 2) return Score.Poor;
       // if (perfect_timestamp - timestamp > 2) return Score.Bad;
-        
+
     },
     getValues: function(object) {
       // use a polyfill in case Object.values is not supported by current browser
@@ -266,7 +265,6 @@ body,
   flex: 1; /* additionally, equal width */
   
   padding: 1em;
-  border: solid;
 }
 </style>
 <style>
