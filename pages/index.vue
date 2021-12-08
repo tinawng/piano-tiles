@@ -25,8 +25,8 @@
         url="https://www.piano-king.com"
         title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
         hashtags="pianokingnft,pianoking,nft,sofianepamart"
-        twitter-user="PianokingNFT"
-        quote="Not a man, just a King"
+        twitter-user="PianoKingNFT"
+        quote="Not a man, just a king."
         >
           Share on Twitter
       </ShareNetwork>
@@ -37,7 +37,7 @@
         network="facebook"
         url="https://www.piano-king.com"
         title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
-        quote="Not a man, just a King"
+        quote="Not a man, just a king."
         hashtags="pianokingnft,pianoking,nft,sofianepamart"
         >
           Share on Facebook
@@ -70,7 +70,6 @@ document.downloadscreenshot = function() {
     a.click();
   });
 }
-
 
 export default {
   data: () => ({
@@ -260,9 +259,9 @@ export default {
     },
     GetPoints(key_id, timestamp){
       console.log('enter', timestamp)
-      for (var i = 0; i < sheet.length; i++) {
+      for ( var i = 0; i < sheet.length; i++ ) {
         if (sheet[i].key == key_id) {
-          if ( sheet[i].time + 300 > timestamp && timestamp > sheet[i].time - 300) {
+          if ( sheet[i].time + 300 > timestamp && timestamp > sheet[i].time - 300 ) {
             this.displayScore("PERFECT", sheet[i].key);
             this.nextTileToType++
             return 4;
@@ -308,7 +307,6 @@ canvas {
   box-shadow: 0 15px 70px rgb( 0 0 0 / 10% );
   background: rgba( 230, 171, 189, 0.69 );
 }
-
 .buttons__container {
   @apply absolute;
   bottom: 10%;
@@ -349,7 +347,6 @@ button.active {
 .key_score__container * {
   flex-basis: 25%;
 }
-
 .row
 {
   display: flex; /* equal height of the children */
@@ -359,7 +356,6 @@ button.active {
   flex: 1; /* additionally, equal width */
   padding: 1em;
 }
-
 .swal2-footer, .result
 {
   align-items: center;
