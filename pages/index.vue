@@ -186,7 +186,7 @@ export default {
       this.prev_timestamp = timestamp;
       requestAnimationFrame(this.draw);
     },
-    EndGame(){
+    EndGame() {
       Swal.fire({
         title: `<div class = 'result' ><p>You are ${this.percentage}% as skilled as the king!</p><img src="${require('/assets/img/crown.png')}<p>Buy your first NFT on <a href='https://piano-king.com'>piano-king.com</a>!</p>"></div>`,
         background: `#E6ABBD`,
@@ -199,7 +199,7 @@ export default {
         imageAlt: 'Custom image',
       })
     },
-    StartGame(){
+    StartGame() {
       Swal.fire({
         background: `transparent`,
         confirmButtonColor: 'transparent',
@@ -247,7 +247,7 @@ export default {
     keyUp(key_id) {
       this.$refs[`key_${key_id}`].classList.remove("active");
     },
-    displayScore(text, id){
+    displayScore(text, id) {
       if (text === "PERFECT") this.perfects++
       else this.perfects = 0
       this.maxPerfects = Math.max(this.perfects, this.maxPerfects)
@@ -266,17 +266,17 @@ export default {
       console.log('enter', timestamp)
       for (var i = 0; i < sheet.length; i++) {
         if (sheet[i].key == key_id) {
-          if ( sheet[i].time + 300 > timestamp && timestamp > sheet[i].time - 300){
+          if ( sheet[i].time + 300 > timestamp && timestamp > sheet[i].time - 300) {
             this.displayScore("PERFECT", sheet[i].key);
             this.nextTileToType++
             return 4;
           }
-          else if ( sheet[i].time + 350 > timestamp && timestamp > sheet[i].time - 350 ){
+          else if ( sheet[i].time + 350 > timestamp && timestamp > sheet[i].time - 350 ) {
             this.displayScore("GOOD", sheet[i].key);
             this.nextTileToType++
             return 3;
           }
-          else if ( sheet[i].time + 400 > timestamp && timestamp > sheet[i].time - 400 ){
+          else if ( sheet[i].time + 400 > timestamp && timestamp > sheet[i].time - 400 ) {
             this.displayScore("BAD", sheet[i].key);
             console.log('BAD', sheet[i].key, sheet[i].time, timestamp);
             this.nextTileToType++
@@ -295,7 +295,7 @@ export default {
       return 0;
     },
     getValues: function(object) {
-      // use a polyfill in case Object.values is not supported by current browser
+      //use a polyfill in case Object.values is not supported by current browser
       return Object.values ? Object.values(object) : Object.keys(object).map(key => object[key]);
     }
   },
