@@ -1,10 +1,8 @@
 <template>
   <div ref="page" class="page__container">
+    <button id ='start-music' @click="unlockAudio" style='display: none' >coucou</button>
     <div class="relative">
       <canvas ref="canvas"></canvas>
-      <div class="absolute top-0">
-        <audio ref="audio_player" src="/chicago.ogg" />
-      </div>
       <div class="buttons__container">
         <button ref="key_0" v-touch:start="() => { keyDown(0) }" v-touch:end="() => { keyUp(0) }">D</button>
         <button ref="key_1" v-touch:start="() => { keyDown(1) }" v-touch:end="() => { keyUp(1) }">F</button>
@@ -23,10 +21,9 @@
         id='twitter-d'
         network="twitter"
         url="https://www.piano-king.com"
-        title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
+        :title="`I just scored ${percentage} on the piano tiles game of Sofiane Pamart. Play on: ${url}`"
         hashtags="pianokingnft,pianoking,nft,sofianepamart"
-        twitter-user="PianokingNFT"
-        quote="Not a man, just a King"
+        twitter-user="PianoKingNFT"
         >
           Share on Twitter
       </ShareNetwork>
@@ -36,14 +33,14 @@
         id="facebook-d"
         network="facebook"
         url="https://www.piano-king.com"
-        title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
-        quote="Not a man, just a King"
+        :title="`I just scored ${percentage} on the piano tiles game of Sofiane Pamart. Play on: ${url}`"
+        :quote="`I just scored ${percentage} on the piano tiles game of Sofiane Pamart. Play on: ${url}`"
         hashtags="pianokingnft,pianoking,nft,sofianepamart"
         >
           Share on Facebook
       </ShareNetwork>
     </div>
-      <div id='perfect' class='gradient-pink' style='position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD;'>
+      <div id='perfect' class='gradient-pink small-on-mobile' style='position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD;'>
         <p class='gradient-pink'>Score: {{ score }}
         <br>Max Perfects: {{ maxPerfects }}
         <br>Perfects: {{ perfects }}
@@ -71,9 +68,9 @@ document.downloadscreenshot = function() {
   });
 }
 
-
 export default {
   data: () => ({
+    browser: /^((?!chrome|android).)*safari/i.test(navigator.userAgent),
     canvas_height: undefined,
     canvas_width: undefined,
     ctx: undefined,
@@ -88,6 +85,8 @@ export default {
     nextTileToType: 0,
     missed: 0,
     score: 0,
+    url:"piano-royal-challenge.piano-king.com",
+    scoredTiles: [],
 
     curr_timestamp: undefined,
     prev_timestamp: undefined,
@@ -140,6 +139,13 @@ export default {
   },
 
   methods: {
+    unlockAudio: function() {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const audioCtx = new AudioContext();
+      const sound = new Audio('/chicago.mp3');
+      sound.currentTime = 0;
+      sound.play();
+    },
     draw(timestamp) {
       if (!this.start_timestamp) this.start_timestamp = timestamp;
       this.curr_timestamp = timestamp - this.start_timestamp;
@@ -185,9 +191,14 @@ export default {
     },
     EndGame() {
       Swal.fire({
-        title: `<div class = 'result' ><p>You are ${this.percentage}% as skilled as the king!</p><img src="${require('/assets/img/crown.png')}"/><p>Buy your first NFT<br>on <a href='https://piano-king.com' style='color: cyan;'>piano-king.com</a>!</p></div>`,
+        title: `<div class = 'result' ><p>You are ${this.percentage}% as skilled as the king!</p><img style="margin: auto;" src="${require('/assets/img/crown.png')}"/><p>Buy your first NFT<br>on <a href='https://piano-king.com' style='color: cyan;'>piano-king.com</a>!</p></div>`,
         background: `linear-gradient(#020032, #E6ABBD)`, //background: `#E6ABBD`,
-        footer: `<p>Share on social media: </p><img src="${require('/assets/img/twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img src="${require('../assets/img/facebook.svg')}" onclick="click_social_media(\'facebook-d\')"> or download : <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
+        footer: `
+          <p>Share</p>
+          <img src="${require('/assets/img/twitter.svg')}" onclick="click_social_media(\'twitter-d\')">
+          <img src="${require('../assets/img/facebook.svg')}" onclick="click_social_media(\'facebook-d\')">
+          <p>or download </p><img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">
+        `,
         imageUrl: require('/assets/img/FEqSaeQWYAcu0ln.jpeg'),
         showConfirmButton: false,
         color: "#E6ABBD",
@@ -204,6 +215,7 @@ export default {
         customClass: 'start-game gradient-pink',
         //showConfirmButton: false,
       }).then((result) => {
+        this.play()
         Swal.fire({
           html:'<p style="font-size: 288px; font-weight: 900;"><strong></strong></p>',
           timer: 4000,
@@ -229,16 +241,15 @@ export default {
     },
     play() {
       if (this.is_playing) return;
-
-      this.$refs.audio_player.play();
+      document.getElementById("start-music").click();
       requestAnimationFrame(this.draw);
-      setTimeout(() => this.EndGame(), 61062.415);
+      setTimeout(() => this.EndGame(), 62000.415);
       this.is_playing = true;
     },
 
     keyDown(key_id) {
       this.$refs[`key_${key_id}`].classList.add("active");
-      this.score = this.score + this.GetPoints(key_id, this.curr_timestamp - 20);
+      this.score = this.score + this.GetPoints(key_id, this.curr_timestamp - 20 );
       // TODO: check tile
     },
     keyUp(key_id) {
@@ -260,28 +271,34 @@ export default {
     },
     GetPoints(key_id, timestamp){
       console.log('enter', timestamp)
-      for (var i = 0; i < sheet.length; i++) {
+      for ( var i = 0; i < sheet.length; i++ ) {
+        if (this.scoredTiles[i]) continue
+
         if (sheet[i].key == key_id) {
-          if ( sheet[i].time + 300 > timestamp && timestamp > sheet[i].time - 300) {
+          if ( sheet[i].time + 300 > timestamp && timestamp > sheet[i].time - 300 ) {
             this.displayScore("PERFECT", sheet[i].key);
             this.nextTileToType++
+            this.scoredTiles[i] = true
             return 4;
           }
           else if ( sheet[i].time + 350 > timestamp && timestamp > sheet[i].time - 350 ) {
             this.displayScore("GOOD", sheet[i].key);
             this.nextTileToType++
+            this.scoredTiles[i] = true
             return 3;
           }
           else if ( sheet[i].time + 400 > timestamp && timestamp > sheet[i].time - 400 ) {
             this.displayScore("BAD", sheet[i].key);
             console.log('BAD', sheet[i].key, sheet[i].time, timestamp);
             this.nextTileToType++
+            this.scoredTiles[i] = true
             return 2;
           }
-          else if ( sheet[i].time + 450 > timestamp && timestamp > sheet[i].time - 450 ){
+          else if ( sheet[i].time + 450 > timestamp && timestamp > sheet[i].time - 450 ) {
             this.displayScore("POOR", sheet[i].key);
             console.log('POOR', sheet[i].key, sheet[i].time, timestamp)
             this.nextTileToType++
+            this.scoredTiles[i] = true
             return 1;
           }
         }
@@ -299,30 +316,33 @@ export default {
 </script>
 
 <style lang="postcss">
-.page__container {
+.page__container
+{
   @apply h-full max-w-2xl;
   @apply mx-auto;
   @apply flex flex-col justify-center;
 }
-canvas {
+canvas
+{
   box-shadow: 0 15px 70px rgb( 0 0 0 / 10% );
   background: rgba( 230, 171, 189, 0.69 );
 }
-
-.buttons__container {
+.buttons__container
+{
   @apply absolute;
   bottom: 10%;
   @apply w-full;
   @apply flex justify-around;
 }
-button {
+button
+{
   @apply h-14 w-14;
   @apply rounded-full;
   @apply transition-all;
   background: linear-gradient( 145deg, #E6E6E6, #FFF );
   box-shadow: 0px 10px #560E36;
-
-  @media (min-width: 1024px) {
+  @media (min-width: 1024px)
+  {
     @apply h-20 w-20;
     background: linear-gradient( 145deg, #DDD, #FFF );
     box-shadow: 0px 10px #560E36;
@@ -330,26 +350,28 @@ button {
     font-weight: 900;
   }
 }
-button.active {
+button.active
+{
   background: linear-gradient( 145deg, #CACACA, #F0F0F0 );
   box-shadow: 0px 0 #D1859F;
-  transform: translateY(5px);
-
-  @media (min-width: 1024px) {
+  transform: translateY(10px);
+  @media (min-width: 1024px)
+  {
     box-shadow: 0px 0 #D1859F;
   }
 }
-.key_score__container {
+.key_score__container
+{
   @apply absolute;
   bottom: 5%;
   @apply w-full;
   @apply flex justify-around text-center;
   @apply text-sm md:text-xl;
 }
-.key_score__container * {
+.key_score__container *
+{
   flex-basis: 25%;
 }
-
 .row
 {
   display: flex; /* equal height of the children */
@@ -359,14 +381,14 @@ button.active {
   flex: 1; /* additionally, equal width */
   padding: 1em;
 }
-
-.swal2-footer, .result
+.swal2-footer,
+.result
 {
   align-items: center;
 }
 .swal2-footer > *
 {
-  padding: 10px;
+  padding: 5px;
 }
 .swal2-container *
 {
@@ -394,5 +416,26 @@ button.active {
 .swal2-popup.swal2-modal.swal2-show
 {
   margin: 3px;
+}
+
+@media (max-width: 900px) {
+  div.buttons__container > button{
+    color: transparent;
+  }
+  .small-on-mobile {
+    font-size: 30px !important;
+    color: black !important;
+  }
+  .swal2-footer > *
+  {
+    font-size: 15px;
+  }
+  .swal2-image {
+    height: auto !important;
+    max-width: 80%;
+  }
+  .swal2-title {
+    font-size: 1.5em;
+  }
 }
 </style>
