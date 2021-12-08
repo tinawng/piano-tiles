@@ -207,12 +207,11 @@ export default {
         background: `transparent`,
         confirmButtonColor: 'transparent',
         confirmButtonText: 'Play against the Piano King!',
-        customClass: 'start-game gradient-pink background-transparent',
+        customClass: 'start-game gradient-pink',
         // showConfirmButton: false,
       }).then((result) => {
-        this.play()
         Swal.fire({
-          html:'<p style="font-size:248px"><strong></strong></p>' ,
+          html:'<p style="font-size: 256px;"><strong></strong></p>' ,
           timer: 4000,
           background: `transparent`,
           confirmButtonColor: 'transparent',
@@ -229,6 +228,8 @@ export default {
           willClose: () => {
             clearInterval(timerInterval)
           }
+        }).then((result) => {  
+          this.play()
         })     
       })
     },
@@ -344,6 +345,7 @@ button {
 button.active {
   background: linear-gradient( 145deg, #CACACA, #F0F0F0 );
   box-shadow: 0px 0 #D1859F;
+  transform: translateY(3px);
 
   @media (min-width: 1024px) {
     box-shadow: 0px 0 #D1859F;
@@ -403,8 +405,5 @@ body,
 .swal2-popup.swal2-modal.swal2-show
 {
   margin: 3px;
-}
-.background-transparent{
-  background:transparent;
 }
 </style>
