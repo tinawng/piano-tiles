@@ -323,7 +323,7 @@ button {
   @media (min-width: 1024px) {
     @apply h-20 w-20;
     background: linear-gradient( 145deg, #DDD, #FFF );
-    box-shadow: 0px 5px #560E36;
+    box-shadow: 0px 10px #560E36;
     font-size: 3em;
     font-weight: 900;
   }
@@ -331,7 +331,7 @@ button {
 button.active {
   background: linear-gradient( 145deg, #CACACA, #F0F0F0 );
   box-shadow: 0px 0 #D1859F;
-  transform: translateY(5px);
+  transform: translateY(10px);
 
   @media (min-width: 1024px) {
     box-shadow: 0px 0 #D1859F;
