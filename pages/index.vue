@@ -80,7 +80,7 @@ export default {
     canvas_height: undefined,
     canvas_width: undefined,
     ctx: undefined,
-    percentage: 50,
+    number_max: sheet.length,
     score: 100,
     perfects: 0,
     maxPerfects: 0,
@@ -88,8 +88,6 @@ export default {
     score_key_1: "",
     score_key_2: "",
     score_key_3: "",
-    perfects: 0,
-    maxPerfects: 0,
     nextTileToType: 0,
     missed: 0,
     score: 0,
@@ -102,6 +100,12 @@ export default {
     tile_list: [],
     scroll_speed: 3000, // 3000ms for a tile to cross the entire screen
   }),
+
+  computed :{
+    percentage: function() {
+       return  (this.score / (this.number_max * 4)  * 100 ).toFixed(2)
+    }
+  },
 
   mounted() {
     // Fit canvas to page dimensions
@@ -204,8 +208,11 @@ export default {
         text: 'He is a world class player and only a few can dream of having his skills',
         icon: 'question',
         confirmButtonText: 'Play!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.play()
+        }
       })
-      this.play()
     },
     play() {
       if (this.is_playing) return;
@@ -241,10 +248,9 @@ export default {
     },
     GetPoints(key_id, timestamp){
       console.log('enter', timestamp)
-      var x = 300
       for (var i = 0; i < sheet.length; i++) {
         if (sheet[i].key == key_id) {
-          if ( sheet[i].time + x > timestamp && timestamp > sheet[i].time - x){
+          if ( sheet[i].time + 300 > timestamp && timestamp > sheet[i].time - 300){
             this.displayScore("PERFECT", sheet[i].key);
             this.nextTileToType++
             return 4;
@@ -268,18 +274,9 @@ export default {
           }
         }
       }
-
       this.missed++
       this.displayScore("MISSED", key_id)
       return 0;
-
-
-      // print(timestamp - perfect_timestamp)
-      // if (perfect_timestamp - timestamp > 4) return Score.Perfect;
-      // if (perfect_timestamp - timestamp > 2) return Score.Good;
-      // if (perfect_timestamp - timestamp > 2) return Score.Poor;
-      // if (perfect_timestamp - timestamp > 2) return Score.Bad;
-
     },
     getValues: function(object) {
       // use a polyfill in case Object.values is not supported by current browser
@@ -360,6 +357,9 @@ body,
 }
 .swal2-footer > img {
     cursor: pointer;
+}
+.swal2-popup.swal2-modal.swal2-show {
+    margin: 3px;
 }
 html {
   font-family: "Futura";
