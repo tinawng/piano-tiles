@@ -36,7 +36,7 @@ export default {
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [{ src: '@/plugins/vue2-touch-events.js' }],
+  plugins: [{ src: '@/plugins/vue2-touch-events.js' }, { src: '@/plugins/vue-social-sharing.js' }],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
