@@ -57,7 +57,6 @@ import sheet from "~/assets/json/chicago.json";
 import VueSocialSharing from 'vue-social-sharing';
 import Vue from 'vue';
 import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 
 let timerInterval;
 document.click_social_media = function(css_selector) {
