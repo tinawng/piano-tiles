@@ -43,7 +43,7 @@
           Share on Facebook
       </ShareNetwork>
     </div>
-      <div id='perfect' class='gradient-pink' style='position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD;'>
+      <div id='perfect' class='gradient-pink small-on-mobile' style='position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD;'>
         <p class='gradient-pink'>Score: {{ score }}
         <br>Max Perfects: {{ maxPerfects }}
         <br>Perfects: {{ perfects }}
@@ -184,9 +184,15 @@ export default {
     },
     EndGame() {
       Swal.fire({
-        title: `<div class = 'result' ><p>You are ${this.percentage}% as skilled as the king!</p><img src="${require('/assets/img/crown.png')}"/><p>Buy your first NFT<br>on <a href='https://piano-king.com' style='color: cyan;'>piano-king.com</a>!</p></div>`,
+        title: `<div class = 'result' ><p>You are ${this.percentage}% as skilled as the king!</p><img style="margin: auto;" src="${require('/assets/img/crown.png')}"/><p>Buy your first NFT<br>on <a href='https://piano-king.com' style='color: cyan;'>piano-king.com</a>!</p></div>`,
         background: `linear-gradient(#020032, #E6ABBD)`, //background: `#E6ABBD`,
-        footer: `<p>Share on social media: </p><img src="${require('/assets/img/twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img src="${require('../assets/img/facebook.svg')}" onclick="click_social_media(\'facebook-d\')"> or download : <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
+        footer: `
+          <p>Share on social media: </p>
+          <img src="${require('/assets/img/twitter.svg')}" onclick="click_social_media(\'twitter-d\')">
+          <img src="${require('../assets/img/facebook.svg')}" onclick="click_social_media(\'facebook-d\')">
+          or download :
+          <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">
+        `,
         imageUrl: require('/assets/img/FEqSaeQWYAcu0ln.jpeg'),
         showConfirmButton: false,
         color: "#E6ABBD",
@@ -402,6 +408,20 @@ button.active
 @media only screen and (max-width: 600px) {
   div.buttons__container > button{
     color: transparent;
+  }
+}
+
+@media (max-width: 900px) {
+  .small-on-mobile {
+    font-size: 30px !important;
+    color: black !important;
+  }
+  .swal2-image {
+    height: auto !important;
+    max-width: 80%;
+  }
+  .swal2-title {
+    font-size: 1.5em;
   }
 }
 </style>
