@@ -192,9 +192,9 @@ export default {
     EndGame(){
       Swal.fire({
         title: `You scored ${this.score}, ${this.perfects} perfects and a max strike of ${this.maxPerfects}.\n You are ${this.percentage}% as skilled as the king!`,
-        background: '#fff url("https://tipsmake.com/data/images/100-most-beautiful-background-picture-2-O1DlX9Nzx.jpg")',
-        footer: `<p>Share on social media: </p><img src="${require('../assets/img/Twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img src="${require('../assets/img/TikTok.svg')}" onclick="click_social_media(\'facebook-d\')"> or download : <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
-        imageUrl: 'https://pbs.twimg.com/media/FEqSaeQWYAcu0ln?format=jpg&name=large',
+        background: `#fff url("${require('/assets/img/most-beautiful-background-picture.jpg')}")`,
+        footer: `<p>Share on social media: </p><img src="${require('/assets/img/Twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img src="${require('../assets/img/TikTok.svg')}" onclick="click_social_media(\'facebook-d\')"> or download : <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
+        imageUrl: require('/assets/img/FEqSaeQWYAcu0ln.jpeg'),
         showConfirmButton: false,
         color: "white",
         imageWidth: 400,
