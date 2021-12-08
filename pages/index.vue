@@ -237,7 +237,7 @@ export default {
 
     keyDown(key_id) {
       this.$refs[`key_${key_id}`].classList.add("active");
-      this.score = this.score + this.GetPoints(key_id, this.curr_timestamp - 20);
+      this.score = this.score + this.GetPoints(key_id, this.curr_timestamp - 20 );
       // TODO: check tile
     },
     keyUp(key_id) {
@@ -277,7 +277,7 @@ export default {
             this.nextTileToType++
             return 2;
           }
-          else if ( sheet[i].time + 450 > timestamp && timestamp > sheet[i].time - 450 ){
+          else if ( sheet[i].time + 450 > timestamp && timestamp > sheet[i].time - 450 ) {
             this.displayScore("POOR", sheet[i].key);
             console.log('POOR', sheet[i].key, sheet[i].time, timestamp)
             this.nextTileToType++
