@@ -103,7 +103,7 @@ export default {
 
   computed :{
     percentage: function() {
-       return  (this.score / (this.number_max * 4)  * 100 ).toFixed(2)
+       return ( this.score / ( this.number_max * 4 ) * 100 ).toFixed(2)
     }
   },
 
@@ -192,11 +192,11 @@ export default {
     EndGame(){
       Swal.fire({
         title: `You scored ${this.score}, ${this.perfects} perfects and a max strike of ${this.maxPerfects}.\n You are ${this.percentage}% as skilled as the king!`,
-        background: `#E6ABBD url("${require('/assets/img/main-cover.jpeg')}")`,
+        background: `#E6ABBD url("${require('/assets/img/background-popup.jpeg')}")`,
         footer: `<p>Share on social media: </p><img src="${require('/assets/img/twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img src="${require('../assets/img/tiktok.svg')}" onclick="click_social_media(\'facebook-d\')"> or download : <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
         imageUrl: require('/assets/img/FEqSaeQWYAcu0ln.jpeg'),
         showConfirmButton: false,
-        color: "white",
+        color: "#E6ABBD",
         imageWidth: 400,
         imageHeight: 400,
         imageAlt: 'Custom image',
@@ -240,10 +240,10 @@ export default {
       else if (id == 1) this.score_key_1 = text;
       else if (id == 2) this.score_key_2 = text;
       else if (id == 3) this.score_key_3 = text;
-      setTimeout(() => {  this.score_key_0 = "" }, 300);
-      setTimeout(() => {  this.score_key_1 = "" }, 300);
-      setTimeout(() => {  this.score_key_2 = "" }, 300);
-      setTimeout(() => {  this.score_key_3 = "" }, 300);
+      setTimeout(() => { this.score_key_0 = "" }, 300);
+      setTimeout(() => { this.score_key_1 = "" }, 300);
+      setTimeout(() => { this.score_key_2 = "" }, 300);
+      setTimeout(() => { this.score_key_3 = "" }, 300);
 
     },
     GetPoints(key_id, timestamp){
