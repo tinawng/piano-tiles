@@ -54,8 +54,6 @@
 <script >
 import Swal from "sweetalert2";
 import sheet from "~/assets/json/chicago.json";
-import VueSocialSharing from 'vue-social-sharing';
-import Vue from 'vue';
 import html2canvas from "html2canvas";
 
 let timerInterval;
@@ -72,7 +70,6 @@ document.downloadscreenshot = function() {
   });
 }
 
-Vue.use(VueSocialSharing);
 
 export default {
   data: () => ({
