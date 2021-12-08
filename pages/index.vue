@@ -162,10 +162,10 @@ export default {
       // tiles drawing
       sheet.forEach((tile, i) => {
         // 480: distance from bottom to button
-        let start_position = -tile.time + (this.scroll_speed - 480);
+        let start_position = -tile.time + ( this.scroll_speed - 480 );
         let x = this.canvas_width * 0.25 * tile.key + this.canvas_width * 0.125;
         // -30: arbitrary delay offset [-30 for mobile or +30 for desktop ?]
-        let y = (start_position + this.curr_timestamp) * px_per_ms - 30;
+        let y = ( start_position + this.curr_timestamp ) * px_per_ms - 30;
         this.ctx.save();
         this.ctx.beginPath();
         this.ctx.strokeStyle = "black";
@@ -173,7 +173,7 @@ export default {
         this.ctx.fill();
         this.ctx.restore();
       
-        if (i === this.nextTileToType && y > this.canvas_height *.9 + 500 * px_per_ms) {
+        if ( i === this.nextTileToType && y > this.canvas_height *.9 + 500 * px_per_ms ) {
           this.missed++
           this.nextTileToType++
           this.displayScore("MISSED", tile.key)
@@ -215,7 +215,7 @@ export default {
           didOpen: () => {
             timerInterval = setInterval(() => {
               Swal.getHtmlContainer().querySelector('strong')
-                .textContent = (Swal.getTimerLeft() / 1000)
+                .textContent = ( Swal.getTimerLeft() / 1000 )
                   .toFixed(0)
             }, 100)
           },
