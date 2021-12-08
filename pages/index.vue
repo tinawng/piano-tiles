@@ -191,7 +191,7 @@ export default {
     },
     EndGame(){
       Swal.fire({
-        title: `You scored ${this.score}, ${this.perfects} perfects and a max strike of ${this.maxPerfects}.\n You are ${this.percentage}% as skilled as the king!`,
+        title: `<div class = 'result' ><p>You are ${this.percentage}% as skilled as the king!</p><img src="${require('/assets/img/crown.png')}"></div>`,
         background: `#E6ABBD`, //url("${require('/assets/img/background-popup.jpeg')}")`,
         footer: `<p>Share on social media: </p><img src="${require('/assets/img/twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img src="${require('../assets/img/tiktok.svg')}" onclick="click_social_media(\'facebook-d\')"> or download : <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
         imageUrl: require('/assets/img/FEqSaeQWYAcu0ln.jpeg'),
@@ -372,7 +372,7 @@ body,
 }
 </style>
 <style>
-.swal2-footer
+.swal2-footer, .result
 {
   align-items: center;
 }
