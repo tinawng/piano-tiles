@@ -191,9 +191,9 @@ export default {
     },
     EndGame(){
       Swal.fire({
-        title: `You scored ${this.score}, ${this.perfects} perfects and a max strike of ${this.maxPerfects}.\n You are ${this.percentage}% as skilled as the king!`,
-        background: `#E6ABBD, //url("${require('/assets/img/background-popup.jpeg')}")`,
-        footer: `<p>Share on social media: </p><img src="${require('/assets/img/twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img src="${require('../assets/img/tiktok.svg')}" onclick="click_social_media(\'facebook-d\')"> or download : <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
+        title: `You scored ${this.score}, ${this.perfects} perfects and a max strike of ${this.maxPerfects}.\n You are ${this.percentage}% as skilled as the Piano King!`,
+        background: `#fff url("${require('/assets/img/most-beautiful-background-picture.jpg')}")`,
+        footer: `<p>Share on social media: </p><img width="36" height="36" src="${require('/assets/img/Twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img id = 'facebook-logo' width="36" height="36" src="${require('../assets/img/Facebook.svg')}" onclick="click_social_media(\'facebook-d\')"><p> or download your results:</p> <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
         imageUrl: require('/assets/img/FEqSaeQWYAcu0ln.jpeg'),
         showConfirmButton: false,
         color: "#E6ABBD",
@@ -208,9 +208,20 @@ export default {
         text: 'He is a world class player and only a few can dream of having his skills',
         icon: 'question',
         confirmButtonText: 'Play!',
+        showCloseButton: true
+
       }).then((result) => {
         if (result.isConfirmed) {
           this.play()
+        } else {
+          Swal.fire({
+          customClass:'lost',
+          title: '<p style="color:rgba(136, 39, 34, 1)">You lost</p>',
+          background: `rgba(255, 255, 255, 0.3)`,
+          showConfirmButton: false,
+          imageUrl: require('/assets/img/game-declined.png'),
+
+        })
         }
       })
     },
@@ -349,12 +360,23 @@ body,
   align-items: center;
 }
 .swal2-footer > * {
-    padding: 10px;
+    padding: 5px;
+    font-size: 14.5px !important;
 }
 .swal2-footer > img {
     cursor: pointer;
 }
 .swal2-popup.swal2-modal.swal2-show {
     margin: 3px;
+}
+html {
+  font-family: "Futura";
+}
+img#facebook-logo {
+    margin-right: 10px;
+}
+.lost .swal2-image {
+  border-radius: 5px;
+    margin: 0;
 }
 </style>
