@@ -12,10 +12,10 @@
         <button ref="key_3" v-touch:start="() => { keyDown(3) }" v-touch:end="() => { keyUp(3) }">K</button>
       </div>
       <div class="row" style="position: absolute; bottom: 0; width: 100%; height: 100px; display: flex; align-items: center; text-align: center; font-size: 2em;">
-        <div class="col "><p>{{this.score_key_0}}</p></div>
-        <div class="col "><p>{{this.score_key_1}}</p></div>
-        <div class="col "><p>{{this.score_key_2}}</p></div>
-        <div class="col "><p>{{this.score_key_3}}</p></div>
+        <div class="col "><p>{{score_key_0}}</p></div>
+        <div class="col "><p>{{score_key_1}}</p></div>
+        <div class="col "><p>{{score_key_2}}</p></div>
+        <div class="col "><p>{{score_key_3}}</p></div>
       </div>
     </div>
     <div style="display:none">
@@ -347,8 +347,7 @@ button.active {
   flex: 1; /* additionally, equal width */
   padding: 1em;
 }
-</style>
-<style>
+
 .swal2-footer, .result
 {
   align-items: center;
