@@ -84,7 +84,7 @@ export default {
     score_key_0: "",
     score_key_1: "",
     score_key_2: "",
-    score_key_3: "MISSED",
+    score_key_3: "",
     nextTileToType: 0,
     missed: 0,
     score: 0,
