@@ -65,14 +65,11 @@ document.click_social_media = function(css_selector) {
 }
 
 document.downloadscreenshot = function() {
-  html2canvas(document.getElementsByClassName("swal2-popup swal2-modal swal2-show")[0], { useCORS: true, logging: true,  scrollX: 0, scrollY: 0 }).then(function(canvas) {
-    var doc = new jsPDF("p", "pt", "a4");
-    var img = canvas.toDataURL("image/png", canvas.width, canvas.height);
-    var hratio = canvas.height / canvas.width;
-    var width = doc.internal.pageSize.width;
-    var height = width * hratio;
-    doc.addImage(img, "JPEG", 20, 20, width * 0.9, height * 0.9, "FAST");
-    doc.save("king_game.pdf");
+  html2canvas(document.getElementsByClassName("swal2-popup swal2-modal swal2-show")[0], { useCORS: true, logging: true, scrollX: 0, scrollY: 0 }).then(function(canvas) {
+    var a = document.createElement('a');
+    a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+    a.download = 'king_tiles.jpg';
+    a.click();
   });
 }
 
