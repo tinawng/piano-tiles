@@ -204,7 +204,7 @@ export default {
     StartGame(){
       Swal.fire({
         title: 'Play against the king?',
-        text: 'He is a world class player and only a few can dream of having his skills',
+        text: 'He is a world-class player.\nMany a man has only dreamt of reaching his level of mastery.\nAre you up to the challenge?',
         icon: 'question',
         confirmButtonText: 'Play!',
       }).then((result) => {
