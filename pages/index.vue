@@ -189,7 +189,7 @@ export default {
     EndGame(){
       Swal.fire({
         title: `<div class = 'result' ><p>You are ${this.percentage}% as skilled as the king!</p><img src="${require('/assets/img/crown.png')}<p>Buy your first NFT on <a href='https://piano-king.com'>piano-king.com</a>!</p>"></div>`,
-        background: `#E6ABBD`, //url("${require('/assets/img/background-popup.jpeg')}")`,
+        background: `#E6ABBD`,
         footer: `<p>Share on social media: </p><img src="${require('/assets/img/twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img src="${require('../assets/img/tiktok.svg')}" onclick="click_social_media(\'facebook-d\')"> or download : <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
         imageUrl: require('/assets/img/FEqSaeQWYAcu0ln.jpeg'),
         showConfirmButton: false,
@@ -205,13 +205,13 @@ export default {
         confirmButtonColor: 'transparent',
         confirmButtonText: 'Play against the Piano King!',
         customClass: 'start-game gradient-pink',
-        // showConfirmButton: false,
+        //showConfirmButton: false,
       }).then((result) => {
         Swal.fire({
-          html:'<p style="font-size: 288px;"><strong></strong></p>' ,
+          html:'<p style="font-size: 288px; font-weight: 900;"><strong></strong></p>',
           timer: 4000,
           background: `transparent`,
-          confirmButtonColor: 'transparent',
+          confirmButtonColor: 'none',
           timerProgressBar: false,
           showConfirmButton: false,
           customClass: 'gradient-pink-big',
@@ -374,6 +374,7 @@ button.active {
 {
   width: 100%;
   font-size: 40px !important;
+  font-weight: 900;
   height: 100%;
 }
 .gradient-pink *
