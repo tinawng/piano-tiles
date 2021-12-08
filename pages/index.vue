@@ -17,12 +17,6 @@
         <div class="col "><p>{{this.score_key_2}}</p></div>
         <div class="col "><p>{{this.score_key_3}}</p></div>
       </div>
-      <div id="perfect" style="position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right;">
-        Score: {{ score }}
-        <br>Max Perfects: {{ maxPerfects }}
-        <br>Perfects: {{ perfects }}
-        <br>Missed: {{ missed }}
-      </div>
     </div>
     <div style="display:none">
       <ShareNetwork
@@ -47,6 +41,12 @@
         >
           Share on Facebook
       </ShareNetwork>
+    </div>
+      <div id="perfect" style="position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD; text-shadow: 1px 1px rgba(209,133,159, 0.80), 2px 2px rgba(209,133,159, 0.60), 3px 3px rgba(209,133,159, 0.40), 4px 4px rgba(209,133,159, 0.20), 5px 5px rgba(209,133,159, 0.00);"> <!--#D1859F--> <!--text-shadow: 1px 1px rgba(209,133,159, 0.80), 2px 2px rgba(209,133,159, 0.60), 3px 3px rgba(209,133,159, 0.40), 4px 4px rgba(209,133,159, 0.20), 5px 5px rgba(209,133,159, 0.00)-->
+      Score: {{ score }}
+      <br>Max Perfects: {{ maxPerfects }}
+      <br>Perfects: {{ perfects }}
+      <br>Missed: {{ missed }}
     </div>
   </div>
 </template>
