@@ -312,22 +312,22 @@ button {
   @apply rounded-full;
   @apply transition-all;
   background: linear-gradient( 145deg, #e6e6e6, #ffffff );
-  box-shadow: 12px 12px 24px #d1d1d1, -12px -12px 24px #ffffff;
+  box-shadow: 12px 12px 24px #560E36, -12px -12px 24px #BC004D;
 
   @media (min-width: 1024px) {
     @apply h-20 w-20;
     background: linear-gradient( 145deg, #dddddd, #ffffff );
-    box-shadow: 18px 18px 36px #bebebe, -18px -18px 36px #ffffff;
+    box-shadow: 18px 18px 36px #560E36, -18px -18px 36px #BC004D;
     font-size: 3em;
     font-weight: 900;
   }
 }
 button.active {
   background: linear-gradient( 145deg, #cacaca, #f0f0f0 );
-  box-shadow: 1px 1px 2px rgb( 230, 171, 189 ), -1px 1px 2px rgb( 0, 0, 0 );
+  box-shadow: 1px 1px 2px #D1859F, -1px 1px 2px #E6ABBD;
 
   @media (min-width: 1024px) {
-    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px rgb( 230, 171, 189 );
+    box-shadow: 5px 5px 10px #D1859F, -5px -5px 10px #E6ABBD;
   }
 }
 </style>
