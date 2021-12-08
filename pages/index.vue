@@ -346,9 +346,14 @@ body,
 <style>
 @font-face {
   font-family: "Futura";
-  src: local("Futura"),
-   url(~assets/futura-pt-heavy.otf) format("truetype");
+  src: local("Futura");
+  url(~assets/futura-pt-heavy.otf) format("truetype");
 }
+/*@font-face {
+  font-family: "Futura Bold";
+  src: url("Futura Bold");
+  font-weight: bold;
+}*/
 .swal2-footer{
   align-items: center;
 }
