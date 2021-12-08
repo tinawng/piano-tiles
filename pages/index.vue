@@ -311,19 +311,19 @@ button {
   @apply h-14 w-14;
   @apply rounded-full;
   @apply transition-all;
-  background: linear-gradient( 145deg, #e6e6e6, #ffffff );
+  background: linear-gradient( 145deg, #E6E6E6, #FFF );
   box-shadow: 12px 12px 24px #560E36, -12px -12px 24px #BC004D;
 
   @media (min-width: 1024px) {
     @apply h-20 w-20;
-    background: linear-gradient( 145deg, #dddddd, #ffffff );
+    background: linear-gradient( 145deg, #DDD, #FFF );
     box-shadow: 18px 18px 36px #560E36, -18px -18px 36px #BC004D;
     font-size: 3em;
     font-weight: 900;
   }
 }
 button.active {
-  background: linear-gradient( 145deg, #cacaca, #f0f0f0 );
+  background: linear-gradient( 145deg, #CACACA, #F0F0F0 );
   box-shadow: 1px 1px 2px #D1859F, -1px 1px 2px #E6ABBD;
 
   @media (min-width: 1024px) {
