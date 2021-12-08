@@ -1,4 +1,3 @@
-
 <template>
   <div ref="page" class="page__container">
     <div class="relative">
@@ -191,9 +190,9 @@ export default {
     },
     EndGame(){
       Swal.fire({
-        title: `You scored ${this.score}, ${this.perfects} perfects and a max strike of ${this.maxPerfects}.\n You are ${this.percentage}% as skilled as the Piano King!`,
-        background: `#fff url("${require('/assets/img/most-beautiful-background-picture.jpg')}")`,
-        footer: `<p>Share on social media: </p><img width="36" height="36" src="${require('/assets/img/Twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img id = 'facebook-logo' width="36" height="36" src="${require('../assets/img/Facebook.svg')}" onclick="click_social_media(\'facebook-d\')"><p> or download your results:</p> <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
+        title: `You scored ${this.score}, ${this.perfects} perfects and a max strike of ${this.maxPerfects}.\n You are ${this.percentage}% as skilled as the king!`,
+        background: `#E6ABBD`, //url("${require('/assets/img/background-popup.jpeg')}")`,
+        footer: `<p>Share on social media: </p><img src="${require('/assets/img/twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img src="${require('../assets/img/tiktok.svg')}" onclick="click_social_media(\'facebook-d\')"> or download : <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
         imageUrl: require('/assets/img/FEqSaeQWYAcu0ln.jpeg'),
         showConfirmButton: false,
         color: "#E6ABBD",
@@ -208,20 +207,9 @@ export default {
         text: 'He is a world class player and only a few can dream of having his skills',
         icon: 'question',
         confirmButtonText: 'Play!',
-        showCloseButton: true
-
       }).then((result) => {
         if (result.isConfirmed) {
           this.play()
-        } else {
-          Swal.fire({
-          customClass:'lost',
-          title: '<p style="color:rgba(136, 39, 34, 1)">You lost</p>',
-          background: `rgba(255, 255, 255, 0.9)`,
-          showConfirmButton: false,
-          imageUrl: require('/assets/img/game-declined.png'),
-
-        })
         }
       })
     },
@@ -298,6 +286,10 @@ export default {
 </script>
 
 <style lang="postcss">
+body
+{
+  background: center no-repeat url("../assets/img/main-cover.jpeg");
+}
 .page__container {
   @apply h-full max-w-2xl;
   @apply mx-auto;
@@ -305,7 +297,8 @@ export default {
 }
 canvas {
   @apply rounded-lg;
-  box-shadow: 0 15px 70px rgb(0 0 0 / 10%);
+  box-shadow: 0 15px 70px rgb( 0 0 0 / 10% );
+  background: rgba( 230, 171, 189, 0.69 ); {/*rgba( 255, 255, 255, 0.69 );*/}
 }
 
 .buttons__container {
@@ -318,22 +311,23 @@ button {
   @apply h-14 w-14;
   @apply rounded-full;
   @apply transition-all;
-  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  background: linear-gradient( 145deg, #e6e6e6, #ffffff );
   box-shadow: 12px 12px 24px #d1d1d1, -12px -12px 24px #ffffff;
-  font-size: 2em;
 
   @media (min-width: 1024px) {
     @apply h-20 w-20;
-    background: linear-gradient(145deg, #dddddd, #ffffff);
+    background: linear-gradient( 145deg, #dddddd, #ffffff );
     box-shadow: 18px 18px 36px #bebebe, -18px -18px 36px #ffffff;
+    font-size: 3em;
+    font-weight: 900;
   }
 }
 button.active {
-  background: linear-gradient(145deg, #cacaca, #f0f0f0);
-  box-shadow: 1px 1px 2px #d1d1d1, -1px 1px 2px #ffffff;
+  background: linear-gradient( 145deg, #cacaca, #f0f0f0 );
+  box-shadow: 1px 1px 2px rgb( 230, 171, 189 ), -1px 1px 2px rgb( 0, 0, 0 );
 
   @media (min-width: 1024px) {
-    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px rgb( 230, 171, 189 );
   }
 }
 </style>
@@ -360,23 +354,12 @@ body,
   align-items: center;
 }
 .swal2-footer > * {
-    padding: 5px;
-    font-size: 14.5px !important;
+    padding: 10px;
 }
 .swal2-footer > img {
     cursor: pointer;
 }
 .swal2-popup.swal2-modal.swal2-show {
     margin: 3px;
-}
-html {
-  font-family: "Futura";
-}
-img#facebook-logo {
-    margin-right: 10px;
-}
-.lost .swal2-image {
-  border-radius: 5px;
-    margin: 0;
 }
 </style>
