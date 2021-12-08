@@ -94,7 +94,7 @@ export default {
     perfects: 0,
     maxPerfects: 0,
     nextTileToType: 0,
-    missed: -1,
+    missed: 0,
     score: 0,
 
     curr_timestamp: undefined,
