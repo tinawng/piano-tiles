@@ -356,16 +356,17 @@ button.active {
 html,
 body,
 #__nuxt,
-#__layout {
+#__layout
+{
   @apply h-full;
 }
-.row {
+.row
+{
   display: flex; /* equal height of the children */
 }
-
-.col {
+.col
+{
   flex: 1; /* additionally, equal width */
-  
   padding: 1em;
 }
 </style>
