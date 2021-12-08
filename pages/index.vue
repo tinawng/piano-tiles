@@ -370,30 +370,38 @@ body,
 }
 </style>
 <style>
-.swal2-footer{
+.swal2-footer
+{
   align-items: center;
 }
-.swal2-footer > * {
+.swal2-footer > *
+{
   padding: 10px;
 }
-.swal2-container  *{
+.swal2-container *
+{
   color: white;
 }
-.swal2-footer > img {
+.swal2-footer > img
+{
   cursor: pointer;
 }
-.start-game button {
+.start-game button
+{
   width: 100%;
   font-size: 40px !important;
   height: 100%;
 }
-.gradient-pink *{
+.gradient-pink *
+{
   text-shadow: 1px 1px rgba(209,133,159, 0.80), 2px 2px rgba(209,133,159, 0.60), 3px 3px rgba(209,133,159, 0.40), 4px 4px rgba(209,133,159, 0.20), 5px 5px rgba(209,133,159, 0.00);
 }
-.gradient-pink-big{
+.gradient-pink-big
+{
   text-shadow: 1px 1px rgba(209,133,159, 1.00), 2px 2px rgba(209,133,159, 1.00), 3px 3px rgba(209,133,159, 1.00), 4px 4px rgba(209,133,159, 1.00), 5px 5px rgba(209,133,159, 1.00), 6px 6px rgba(209,133,159, 0.99), 7px 7px rgba(209,133,159, 0.98), 8px 8px rgba(209,133,159, 0.97), 9px 9px rgba(209,133,159, 0.96), 10px 10px rgba(209,133,159, 0.94), 11px 11px rgba(209,133,159, 0.91), 12px 12px rgba(209,133,159, 0.87), 13px 13px rgba(209,133,159, 0.82), 14px 14px rgba(209,133,159, 0.76), 15px 15px rgba(209,133,159, 0.68), 16px 16px rgba(209,133,159, 0.59), 17px 17px rgba(209,133,159, 0.48), 18px 18px rgba(209,133,159, 0.34), 19px 19px rgba(209,133,159, 0.19), 20px 20px rgba(209,133,159, 0.00)
 }
-.swal2-popup.swal2-modal.swal2-show {
+.swal2-popup.swal2-modal.swal2-show
+{
   margin: 3px;
 }
 </style>
