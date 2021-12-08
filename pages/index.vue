@@ -332,22 +332,22 @@ button {
   @apply rounded-full;
   @apply transition-all;
   background: linear-gradient( 145deg, #E6E6E6, #FFF );
-  box-shadow: 12px 12px 24px #560E36, -12px -12px 24px #BC004D;
+  box-shadow: 0px 10px #560E36;
 
   @media (min-width: 1024px) {
     @apply h-20 w-20;
     background: linear-gradient( 145deg, #DDD, #FFF );
-    box-shadow: 18px 18px 36px #560E36, -18px -18px 36px #BC004D;
+    box-shadow: 0px 10px #560E36;
     font-size: 3em;
     font-weight: 900;
   }
 }
 button.active {
   background: linear-gradient( 145deg, #CACACA, #F0F0F0 );
-  box-shadow: 1px 1px 2px #D1859F, -1px 1px 2px #E6ABBD;
+  box-shadow: 0px 1px #D1859F;
 
   @media (min-width: 1024px) {
-    box-shadow: 5px 5px 10px #D1859F, -5px -5px 10px #E6ABBD;
+    box-shadow: 0px 5px #D1859F;
   }
 }
 </style>
@@ -374,26 +374,26 @@ body,
   align-items: center;
 }
 .swal2-footer > * {
-    padding: 10px;
+  padding: 10px;
 }
 .swal2-container  *{
-    color: white;
+  color: white;
 }
 .swal2-footer > img {
-    cursor: pointer;
+  cursor: pointer;
 }
 .start-game button {
-    width: 100%;
-    font-size: 40px !important;
-    height: 100%;
+  width: 100%;
+  font-size: 40px !important;
+  height: 100%;
 }
 .gradient-pink *{
   text-shadow: 1px 1px rgba(209,133,159, 0.80), 2px 2px rgba(209,133,159, 0.60), 3px 3px rgba(209,133,159, 0.40), 4px 4px rgba(209,133,159, 0.20), 5px 5px rgba(209,133,159, 0.00);
 }
 .gradient-pink-big{
-text-shadow: 1px 1px rgba(209,133,159, 1.00), 2px 2px rgba(209,133,159, 1.00), 3px 3px rgba(209,133,159, 1.00), 4px 4px rgba(209,133,159, 1.00), 5px 5px rgba(209,133,159, 1.00), 6px 6px rgba(209,133,159, 0.99), 7px 7px rgba(209,133,159, 0.98), 8px 8px rgba(209,133,159, 0.97), 9px 9px rgba(209,133,159, 0.96), 10px 10px rgba(209,133,159, 0.94), 11px 11px rgba(209,133,159, 0.91), 12px 12px rgba(209,133,159, 0.87), 13px 13px rgba(209,133,159, 0.82), 14px 14px rgba(209,133,159, 0.76), 15px 15px rgba(209,133,159, 0.68), 16px 16px rgba(209,133,159, 0.59), 17px 17px rgba(209,133,159, 0.48), 18px 18px rgba(209,133,159, 0.34), 19px 19px rgba(209,133,159, 0.19), 20px 20px rgba(209,133,159, 0.00)
+  text-shadow: 1px 1px rgba(209,133,159, 1.00), 2px 2px rgba(209,133,159, 1.00), 3px 3px rgba(209,133,159, 1.00), 4px 4px rgba(209,133,159, 1.00), 5px 5px rgba(209,133,159, 1.00), 6px 6px rgba(209,133,159, 0.99), 7px 7px rgba(209,133,159, 0.98), 8px 8px rgba(209,133,159, 0.97), 9px 9px rgba(209,133,159, 0.96), 10px 10px rgba(209,133,159, 0.94), 11px 11px rgba(209,133,159, 0.91), 12px 12px rgba(209,133,159, 0.87), 13px 13px rgba(209,133,159, 0.82), 14px 14px rgba(209,133,159, 0.76), 15px 15px rgba(209,133,159, 0.68), 16px 16px rgba(209,133,159, 0.59), 17px 17px rgba(209,133,159, 0.48), 18px 18px rgba(209,133,159, 0.34), 19px 19px rgba(209,133,159, 0.19), 20px 20px rgba(209,133,159, 0.00)
 }
 .swal2-popup.swal2-modal.swal2-show {
-    margin: 3px;
+  margin: 3px;
 }
 </style>
