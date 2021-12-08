@@ -23,7 +23,7 @@
         id='twitter-d'
         network="twitter"
         url="https://www.piano-king.com"
-        :title="`I just scored ${percentage} on the piano tiles game of Sofiane Pamart. Play on: ${url}`" 
+        :title="`I just scored ${percentage} on the piano tiles game of Sofiane Pamart. Play on: ${url}`"
         hashtags="pianokingnft,pianoking,nft,sofianepamart"
         twitter-user="PianoKingNFT"
         >
@@ -35,7 +35,7 @@
         id="facebook-d"
         network="facebook"
         url="https://www.piano-king.com"
-        :quote="`I just scored ${percentage} on the piano tiles game of Sofiane Pamart. Play on: ${url}`" 
+        :quote="`I just scored ${percentage} on the piano tiles game of Sofiane Pamart. Play on: ${url}`"
         hashtags="pianokingnft,pianoking,nft,sofianepamart"
         >
           Share on Facebook
@@ -87,6 +87,7 @@ export default {
     missed: 0,
     score: 0,
     url:"piano-royal-challenge.piano-king.com",
+    scoredTiles: [],
 
     curr_timestamp: undefined,
     prev_timestamp: undefined,
@@ -265,27 +266,33 @@ export default {
     GetPoints(key_id, timestamp){
       console.log('enter', timestamp)
       for ( var i = 0; i < sheet.length; i++ ) {
+        if (this.scoredTiles[i]) continue
+
         if (sheet[i].key == key_id) {
           if ( sheet[i].time + 300 > timestamp && timestamp > sheet[i].time - 300 ) {
             this.displayScore("PERFECT", sheet[i].key);
             this.nextTileToType++
+            this.scoredTiles[i] = true
             return 4;
           }
           else if ( sheet[i].time + 350 > timestamp && timestamp > sheet[i].time - 350 ) {
             this.displayScore("GOOD", sheet[i].key);
             this.nextTileToType++
+            this.scoredTiles[i] = true
             return 3;
           }
           else if ( sheet[i].time + 400 > timestamp && timestamp > sheet[i].time - 400 ) {
             this.displayScore("BAD", sheet[i].key);
             console.log('BAD', sheet[i].key, sheet[i].time, timestamp);
             this.nextTileToType++
+            this.scoredTiles[i] = true
             return 2;
           }
           else if ( sheet[i].time + 450 > timestamp && timestamp > sheet[i].time - 450 ) {
             this.displayScore("POOR", sheet[i].key);
             console.log('POOR', sheet[i].key, sheet[i].time, timestamp)
             this.nextTileToType++
+            this.scoredTiles[i] = true
             return 1;
           }
         }
