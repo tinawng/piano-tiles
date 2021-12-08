@@ -23,10 +23,9 @@
         id='twitter-d'
         network="twitter"
         url="https://www.piano-king.com"
-        title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
+        :title="`I just scored ${percentage} on the piano tiles game of Sofiane Pamart. Play on: ${url}`" 
         hashtags="pianokingnft,pianoking,nft,sofianepamart"
         twitter-user="PianoKingNFT"
-        quote="Not a man, just a king."
         >
           Share on Twitter
       </ShareNetwork>
@@ -36,8 +35,7 @@
         id="facebook-d"
         network="facebook"
         url="https://www.piano-king.com"
-        title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
-        quote="Not a man, just a king."
+        :quote="`I just scored ${percentage} on the piano tiles game of Sofiane Pamart. Play on: ${url}`" 
         hashtags="pianokingnft,pianoking,nft,sofianepamart"
         >
           Share on Facebook
@@ -88,6 +86,7 @@ export default {
     nextTileToType: 0,
     missed: 0,
     score: 0,
+    url:"piano-royal-challenge.piano-king.com",
 
     curr_timestamp: undefined,
     prev_timestamp: undefined,
@@ -188,11 +187,10 @@ export default {
         title: `<div class = 'result' ><p>You are ${this.percentage}% as skilled as the king!</p><img style="margin: auto;" src="${require('/assets/img/crown.png')}"/><p>Buy your first NFT<br>on <a href='https://piano-king.com' style='color: cyan;'>piano-king.com</a>!</p></div>`,
         background: `linear-gradient(#020032, #E6ABBD)`, //background: `#E6ABBD`,
         footer: `
-          <p>Share on social media: </p>
+          <p>Share</p>
           <img src="${require('/assets/img/twitter.svg')}" onclick="click_social_media(\'twitter-d\')">
           <img src="${require('../assets/img/facebook.svg')}" onclick="click_social_media(\'facebook-d\')">
-          or download :
-          <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">
+          <p>or download </p><img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">
         `,
         imageUrl: require('/assets/img/FEqSaeQWYAcu0ln.jpeg'),
         showConfirmButton: false,
@@ -377,7 +375,7 @@ button.active
 }
 .swal2-footer > *
 {
-  padding: 10px;
+  padding: 5px;
 }
 .swal2-container *
 {
@@ -406,16 +404,18 @@ button.active
 {
   margin: 3px;
 }
-@media only screen and (max-width: 600px) {
+
+@media (max-width: 900px) {
   div.buttons__container > button{
     color: transparent;
   }
-}
-
-@media (max-width: 900px) {
   .small-on-mobile {
     font-size: 30px !important;
     color: black !important;
+  }
+  .swal2-footer > *
+  {
+    font-size: 15px;
   }
   .swal2-image {
     height: auto !important;
