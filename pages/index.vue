@@ -1,10 +1,8 @@
 <template>
   <div ref="page" class="page__container">
+    <button  id ='start-music' @click="unlockAudio" style='display: none' >coucou</button>
     <div class="relative">
       <canvas ref="canvas"></canvas>
-      <div class="absolute top-0">
-        <audio ref="audio_player" :src="[browser == 'safari' ? '/chicago.ogg' : '/chicago.aac']"/>
-      </div>
       <div class="buttons__container">
         <button ref="key_0" v-touch:start="() => { keyDown(0) }" v-touch:end="() => { keyUp(0) }">D</button>
         <button ref="key_1" v-touch:start="() => { keyDown(1) }" v-touch:end="() => { keyUp(1) }">F</button>
@@ -35,6 +33,7 @@
         id="facebook-d"
         network="facebook"
         url="https://www.piano-king.com"
+        :title="`I just scored ${percentage} on the piano tiles game of Sofiane Pamart. Play on: ${url}`"
         :quote="`I just scored ${percentage} on the piano tiles game of Sofiane Pamart. Play on: ${url}`"
         hashtags="pianokingnft,pianoking,nft,sofianepamart"
         >
@@ -140,6 +139,14 @@ export default {
   },
 
   methods: {
+    unlockAudio: function() {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const audioCtx = new AudioContext();
+      const sound = new Audio('/chicago.mp3');
+      sound.play();
+
+
+    },
     draw(timestamp) {
       if (!this.start_timestamp) this.start_timestamp = timestamp;
       this.curr_timestamp = timestamp - this.start_timestamp;
@@ -209,6 +216,7 @@ export default {
         customClass: 'start-game gradient-pink',
         //showConfirmButton: false,
       }).then((result) => {
+        this.play()
         Swal.fire({
           html:'<p style="font-size: 288px; font-weight: 900;"><strong></strong></p>',
           timer: 4000,
@@ -234,10 +242,9 @@ export default {
     },
     play() {
       if (this.is_playing) return;
-
-      this.$refs.audio_player.play();
+      document.getElementById("start-music").click();
       requestAnimationFrame(this.draw);
-      setTimeout(() => this.EndGame(), 61062.415);
+      setTimeout(() => this.EndGame(), 62000.415);
       this.is_playing = true;
     },
 
