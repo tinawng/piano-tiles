@@ -20,29 +20,29 @@
     </div>
     <div style="display:none">
       <ShareNetwork
-          id='twitter-d'
-          network="twitter"
-          url="https://www.piano-king.com"
-          title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
-          quote="The hot reload is so fast it's near instant. - Evan You"
-          hashtags="vuejs,vite"
+        id='twitter-d'
+        network="twitter"
+        url="https://www.piano-king.com"
+        title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
+        quote="The hot reload is so fast it's near instant. - Evan You"
+        hashtags="vuejs,vite"
         >
           Share on Twitter
       </ShareNetwork>
     </div>
     <div style="display:none">
       <ShareNetwork
-          id="facebook-d"
-          network="facebook"
-          url="https://www.piano-king.com"
-          title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
-          quote="The hot reload is so fast it's near instant. - Evan You"
-          hashtags="vuejs,vite"
+        id="facebook-d"
+        network="facebook"
+        url="https://www.piano-king.com"
+        title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
+        quote="The hot reload is so fast it's near instant. - Evan You"
+        hashtags="vuejs,vite"
         >
           Share on Facebook
       </ShareNetwork>
     </div>
-      <div id="perfect" class='gradient-pink' style="position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD;">
+      <div id='perfect' class='gradient-pink' style='position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD;'>
         <p class='gradient-pink'>Score: {{ score }}
         <br>Max Perfects: {{ maxPerfects }}
         <br>Perfects: {{ perfects }}
@@ -97,7 +97,7 @@ export default {
 
     is_playing: false,
     tile_list: [],
-    scroll_speed: 3000, // 3000ms for a tile to cross the entire screen
+    scroll_speed: 3000, // it takes 3000 milliseconds for a tile to cross the entire screen
   }),
 
   computed :{
@@ -107,7 +107,7 @@ export default {
   },
 
   mounted() {
-    // Fit canvas to page dimensions
+    // Fit canvas to page dimensions.
     const page = this.$refs.page;
     const canvas = this.$refs.canvas;
     canvas.height = page.clientHeight;
@@ -117,7 +117,7 @@ export default {
     this.ctx = canvas.getContext("2d");
 
     this.StartGame()
-    // Add keyboard event listener
+    // Add keyboard event listener.
     document.addEventListener("keydown", (event) => {
       let key_id = event.key == "d" ? 0 : event.key == "f" ? 1 : event.key == "j" ? 2 : event.key == "k" ? 3 : null
       if (key_id === null) return
@@ -129,7 +129,7 @@ export default {
       this.keyUp(key_id)
     });
 
-    // Pre-draw keys line separators
+    // Pre-draw keys line separators.
     this.ctx.beginPath();
     this.ctx.strokeStyle = "#0007";
     this.ctx.moveTo(this.canvas_width * 0.25, 0);
@@ -145,9 +145,9 @@ export default {
     draw(timestamp) {
       if (!this.start_timestamp) this.start_timestamp = timestamp;
       this.curr_timestamp = timestamp - this.start_timestamp;
-      // Clear canvas
+      // Clear canvas.
       this.ctx.clearRect(0, 0, this.canvas_width, this.canvas_height);
-      // Keys line separators
+      // keys line separators
       this.ctx.beginPath();
       this.ctx.strokeStyle = "#0007";
       this.ctx.moveTo(this.canvas_width * 0.25, 0);
@@ -158,15 +158,15 @@ export default {
       this.ctx.lineTo(this.canvas_width * 0.75, this.canvas_height);
       this.ctx.stroke();
 
-      // Calculate speed
+      // Calculate speed.
       let px_per_ms = this.canvas_height / this.scroll_speed;
 
-      // Tiles drawing
+      // tiles drawing
       sheet.forEach((tile, i) => {
         // 480: distance from bottom to button
         let start_position = -tile.time + (this.scroll_speed - 480);
         let x = this.canvas_width * 0.25 * tile.key + this.canvas_width * 0.125;
-        // -30: arbitrary delay offset (-30 for mobile / +30 for desktop ??)
+        // -30: arbitrary delay offset [-30 for mobile or +30 for desktop ?]
         let y = (start_position + this.curr_timestamp) * px_per_ms - 30;
         this.ctx.save();
         this.ctx.beginPath();
@@ -174,7 +174,6 @@ export default {
         this.ctx.arc(x, y, 22, 0, 2 * Math.PI);
         this.ctx.fill();
         this.ctx.restore();
-
       
         if (i === this.nextTileToType && y > this.canvas_height *.9 + 500 * px_per_ms) {
           this.missed++
@@ -260,7 +259,6 @@ export default {
       setTimeout(() => { this.score_key_1 = "" }, 300);
       setTimeout(() => { this.score_key_2 = "" }, 300);
       setTimeout(() => { this.score_key_3 = "" }, 300);
-
     },
     GetPoints(key_id, timestamp){
       console.log('enter', timestamp)
@@ -295,7 +293,7 @@ export default {
       return 0;
     },
     getValues: function(object) {
-      //use a polyfill in case Object.values is not supported by current browser
+      // Use a polyfill in case Object.values is not supported by current browser.
       return Object.values ? Object.values(object) : Object.keys(object).map(key => object[key]);
     }
   },
@@ -310,7 +308,7 @@ export default {
 }
 canvas {
   box-shadow: 0 15px 70px rgb( 0 0 0 / 10% );
-  background: rgba( 230, 171, 189, 0.69 ); {/*rgba( 255, 255, 255, 0.69 );*/}
+  background: rgba( 230, 171, 189, 0.69 );
 }
 
 .buttons__container {
@@ -383,7 +381,7 @@ button.active {
 }
 .gradient-pink-big
 {
-  text-shadow: 1px 1px rgba(209,133,159, 1.00), 2px 2px rgba(209,133,159, 1.00), 3px 3px rgba(209,133,159, 1.00), 4px 4px rgba(209,133,159, 1.00), 5px 5px rgba(209,133,159, 1.00), 6px 6px rgba(209,133,159, 0.99), 7px 7px rgba(209,133,159, 0.98), 8px 8px rgba(209,133,159, 0.97), 9px 9px rgba(209,133,159, 0.96), 10px 10px rgba(209,133,159, 0.94), 11px 11px rgba(209,133,159, 0.91), 12px 12px rgba(209,133,159, 0.87), 13px 13px rgba(209,133,159, 0.82), 14px 14px rgba(209,133,159, 0.76), 15px 15px rgba(209,133,159, 0.68), 16px 16px rgba(209,133,159, 0.59), 17px 17px rgba(209,133,159, 0.48), 18px 18px rgba(209,133,159, 0.34), 19px 19px rgba(209,133,159, 0.19), 20px 20px rgba(209,133,159, 0.00)
+  text-shadow: 1px 1px rgba(209,133,159, 1.00), 2px 2px rgba(209,133,159, 1.00), 3px 3px rgba(209,133,159, 1.00), 4px 4px rgba(209,133,159, 1.00), 5px 5px rgba(209,133,159, 1.00), 6px 6px rgba(209,133,159, 0.99), 7px 7px rgba(209,133,159, 0.98), 8px 8px rgba(209,133,159, 0.97), 9px 9px rgba(209,133,159, 0.96), 10px 10px rgba(209,133,159, 0.94), 11px 11px rgba(209,133,159, 0.91), 12px 12px rgba(209,133,159, 0.87), 13px 13px rgba(209,133,159, 0.82), 14px 14px rgba(209,133,159, 0.76), 15px 15px rgba(209,133,159, 0.68), 16px 16px rgba(209,133,159, 0.59), 17px 17px rgba(209,133,159, 0.48), 18px 18px rgba(209,133,159, 0.34), 19px 19px rgba(209,133,159, 0.19), 20px 20px rgba(209,133,159, 0.00);
 }
 .swal2-popup.swal2-modal.swal2-show
 {
