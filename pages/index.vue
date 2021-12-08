@@ -200,6 +200,14 @@ export default {
         imageAlt: 'Custom image',
       })
     },
+    StartGame(){
+      Swal.fire({
+        title: 'Play against the king?',
+        text: 'He is a world class player and only a few can dream of having his skills',
+        icon: 'question',
+        confirmButtonText: 'Play!',
+      })
+    },
     play() {
       if (this.is_playing) return;
 
