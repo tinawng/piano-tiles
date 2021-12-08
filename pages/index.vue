@@ -387,7 +387,7 @@ body,
     font-size: 40px !important;
     height: 100%;
 }
-.gradient-pink{
+.gradient-pink *{
   text-shadow: 1px 1px rgba(209,133,159, 0.80), 2px 2px rgba(209,133,159, 0.60), 3px 3px rgba(209,133,159, 0.40), 4px 4px rgba(209,133,159, 0.20), 5px 5px rgba(209,133,159, 0.00);
 }
 .gradient-pink-big{
