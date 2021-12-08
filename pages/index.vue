@@ -399,4 +399,9 @@ button.active
 {
   margin: 3px;
 }
+@media only screen and (max-width: 600px) {
+  div.buttons__container > button{
+    color: transparent;
+  }
+}
 </style>
