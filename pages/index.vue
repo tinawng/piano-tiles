@@ -69,10 +69,6 @@ export default {
       let key_id = event.key == "d" ? 0 : event.key == "f" ? 1 : event.key == "j" ? 2 : event.key == "k" ? 3 : null;
       if (key_id === null) return
       this.keyDown(key_id)
-      console.log(`{ "key": ${key_id}, "time": ${this.curr_timestamp - 20} },`);
-      console.log('Score', this.score)
-      this.score = this.score + this.GetPoints(key_id, this.curr_timestamp - 20);
-      console.log('Score', this.score)
     });
     document.addEventListener("keyup", (event) => {
       let key_id = event.key == "d" ? 0 : event.key == "f" ? 1 : event.key == "j" ? 2 : event.key == "k" ? 3 : null;
@@ -151,6 +147,7 @@ export default {
 
     keyDown(key_id) {
       this.$refs[`key_${key_id}`].classList.add("active");
+      this.score = this.score + this.GetPoints(key_id, this.curr_timestamp - 20);
       // TODO: check tile
     },
     keyUp(key_id) {
