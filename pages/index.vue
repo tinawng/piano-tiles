@@ -1,3 +1,4 @@
+
 <template>
   <div ref="page" class="page__container" @click="play">
     <div class="relative">
@@ -24,17 +25,68 @@
         <br>Missed: {{ missed }}
       </div>
     </div>
+    <div style="display:none">
+      <ShareNetwork
+          id='twitter-d'
+          network="twitter"
+          url="https://www.piano-king.com"
+          title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
+          quote="The hot reload is so fast it\'s near instant. - Evan You"
+          hashtags="vuejs,vite"
+        >
+          Share on Twitter
+      </ShareNetwork>
+    </div>
+    <div style="display:none">
+      <ShareNetwork
+          id="facebook-d"
+          network="facebook"
+          url="https://www.piano-king.com"
+          title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
+          quote="The hot reload is so fast it\'s near instant. - Evan You"
+          hashtags="vuejs,vite"
+        >
+          Share on Facebook
+      </ShareNetwork>
+    </div>
   </div>
 </template>
 
 <script >
+import Swal from "sweetalert2";
 import sheet from "~/assets/json/chicago.json";
+import VueSocialSharing from 'vue-social-sharing';
+import Vue from 'vue';
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+
+document.click_social_media = function(css_selector) {
+  document.getElementById(css_selector).click()
+}
+
+document.downloadscreenshot = function() {
+  html2canvas(document.getElementsByClassName("swal2-popup swal2-modal swal2-show")[0], { useCORS: true, logging: true,  scrollX: 0, scrollY: 0 }).then(function(canvas) {
+    var doc = new jsPDF("p", "pt", "a4");
+    var img = canvas.toDataURL("image/png", canvas.width, canvas.height);
+    var hratio = canvas.height / canvas.width;
+    var width = doc.internal.pageSize.width;
+    var height = width * hratio;
+    doc.addImage(img, "JPEG", 20, 20, width * 0.9, height * 0.9, "FAST");
+    doc.save("king_game.pdf");
+  });
+}
+
+Vue.use(VueSocialSharing);
+
 export default {
   data: () => ({
     canvas_height: undefined,
     canvas_width: undefined,
     ctx: undefined,
-
+    percentage: 50,
+    score: 100,
+    perfects: 0,
+    maxPerfects: 0,
     score_key_0: "",
     score_key_1: "",
     score_key_2: "",
@@ -88,6 +140,8 @@ export default {
     this.ctx.stroke();
   },
 
+
+
   methods: {
     draw(timestamp) {
       if (!this.start_timestamp) this.start_timestamp = timestamp;
@@ -122,10 +176,7 @@ export default {
         this.ctx.fill();
         this.ctx.restore();
 
-      /*if ( timestamp >= 59062.41499999999 + 2000.00000000000 )
-      {
-        navigator.share(data); // var bragging = `I just scored ${score},\n${perfects} perfects and a strike of ${maxPerfects}\non https://piano-king.com/play! Beat that!`; //`You scored ${score}, ${perfects} perfects and a max strike of ${maxPerfects}. You are ${percent}% as skilled as the king. Share...`;
-      }*/
+      
         if (i === this.nextTileToType && y > this.canvas_height *.9 + 500 * px_per_ms) {
           this.missed++
           this.nextTileToType++
@@ -136,12 +187,25 @@ export default {
       this.prev_timestamp = timestamp;
       requestAnimationFrame(this.draw);
     },
-
+    EndGame(){
+      Swal.fire({
+        title: `You scored ${this.score}, ${this.perfects} perfects and a max strike of ${this.maxPerfects}.\n You are ${this.percentage}% as skilled as the king!`,
+        background: '#fff url("https://tipsmake.com/data/images/100-most-beautiful-background-picture-2-O1DlX9Nzx.jpg")',
+        footer: `<p>Share on social media: </p><img src="${require('../assets/img/Twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img src="${require('../assets/img/TikTok.svg')}" onclick="click_social_media(\'facebook-d\')"> or download : <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
+        imageUrl: 'https://pbs.twimg.com/media/FEqSaeQWYAcu0ln?format=jpg&name=large',
+        showConfirmButton: false,
+        color: "white",
+        imageWidth: 400,
+        imageHeight: 400,
+        imageAlt: 'Custom image',
+      })
+    },
     play() {
       if (this.is_playing) return;
 
       this.$refs.audio_player.play();
       requestAnimationFrame(this.draw);
+      setTimeout(() => this.EndGame(), 1);
       this.is_playing = true;
     },
 
@@ -277,7 +341,15 @@ body,
   src: local("Futura"),
    url(~assets/futura-pt-heavy.otf) format("truetype");
 }
-
+.swal2-footer{
+  align-items: center;
+}
+.swal2-footer > * {
+    padding: 10px;
+}
+.swal2-footer > img {
+    cursor: pointer;
+}
 html {
   font-family: "Futura";
 }
