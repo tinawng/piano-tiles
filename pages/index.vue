@@ -118,7 +118,7 @@ export default {
 
     // Add keyboard event listener
     document.addEventListener("keydown", (event) => {
-      let key_id = event.key == "d" ? 0 : event.key == "f" ? 1 : event.key == "j" ? 2 : event.key == "k" ? 3 : null;
+      let key_id = event.key == "d" ? 0 : event.key == "f" ? 1 : event.key == "j" ? 2 : event.key == "k" ? 3 : null
       if (key_id === null) return
       this.keyDown(key_id)
     });
@@ -244,23 +244,27 @@ export default {
       console.log('enter', timestamp)
       var x = 300
       for (var i = 0; i < sheet.length; i++) {
-        if (sheet[i].key == key_id){
+        if (sheet[i].key == key_id) {
           if ( sheet[i].time + x > timestamp && timestamp > sheet[i].time - x){
             this.displayScore("PERFECT", sheet[i].key);
+            this.nextTileToType++
             return 4;
           }
           else if ( sheet[i].time + 350 > timestamp && timestamp > sheet[i].time - 350 ){
             this.displayScore("GOOD", sheet[i].key);
+            this.nextTileToType++
             return 3;
           }
           else if ( sheet[i].time + 400 > timestamp && timestamp > sheet[i].time - 400 ){
             this.displayScore("BAD", sheet[i].key);
             console.log('BAD', sheet[i].key, sheet[i].time, timestamp);
+            this.nextTileToType++
             return 2;
           }
           else if ( sheet[i].time + 450 > timestamp && timestamp > sheet[i].time - 450 ){
             this.displayScore("POOR", sheet[i].key);
             console.log('POOR', sheet[i].key, sheet[i].time, timestamp)
+            this.nextTileToType++
             return 1;
           }
         }
