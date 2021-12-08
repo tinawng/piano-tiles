@@ -42,12 +42,12 @@
           Share on Facebook
       </ShareNetwork>
     </div>
-      <div id="perfect" class='gradient-pink' style="position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD;"> 
+      <p id="perfect" class='gradient-pink' style="position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD;">
       Score: {{ score }}
       <br>Max Perfects: {{ maxPerfects }}
       <br>Perfects: {{ perfects }}
       <br>Missed: {{ missed }}
-    </div>
+      </p>
   </div>
 </template>
 
