@@ -1,6 +1,6 @@
 
 <template>
-  <div ref="page" class="page__container" @click="play">
+  <div ref="page" class="page__container">
     <div class="relative">
       <canvas ref="canvas"></canvas>
       <div class="absolute top-0">
@@ -116,6 +116,7 @@ export default {
     this.canvas_width = canvas.width;
     this.ctx = canvas.getContext("2d");
 
+    this.StartGame()
     // Add keyboard event listener
     document.addEventListener("keydown", (event) => {
       let key_id = event.key == "d" ? 0 : event.key == "f" ? 1 : event.key == "j" ? 2 : event.key == "k" ? 3 : null
@@ -207,13 +208,14 @@ export default {
         icon: 'question',
         confirmButtonText: 'Play!',
       })
+      this.play()
     },
     play() {
       if (this.is_playing) return;
 
       this.$refs.audio_player.play();
       requestAnimationFrame(this.draw);
-      setTimeout(() => this.EndGame(), 1);
+      setTimeout(() => this.EndGame(), 63000);
       this.is_playing = true;
     },
 
