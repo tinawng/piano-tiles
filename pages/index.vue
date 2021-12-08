@@ -11,11 +11,11 @@
         <button ref="key_2" v-touch:start="() => { keyDown(2) }" v-touch:end="() => { keyUp(2) }">J</button>
         <button ref="key_3" v-touch:start="() => { keyDown(3) }" v-touch:end="() => { keyUp(3) }">K</button>
       </div>
-      <div class="row" style="position: absolute; bottom: 0; width: 100%; height: 100px; display: flex; align-items: center; text-align: center; font-size: 2em;">
-        <div class="col "><p>{{score_key_0}}</p></div>
-        <div class="col "><p>{{score_key_1}}</p></div>
-        <div class="col "><p>{{score_key_2}}</p></div>
-        <div class="col "><p>{{score_key_3}}</p></div>
+      <div class="key_score__container">
+        <span>{{score_key_0}}</span>
+        <span>{{score_key_1}}</span>
+        <span>{{score_key_2}}</span>
+        <span>{{score_key_3}}</span>
       </div>
     </div>
     <div style="display:none">
@@ -81,10 +81,10 @@ export default {
     score: 100,
     perfects: 0,
     maxPerfects: 0,
-    score_key_0: "",
-    score_key_1: "",
-    score_key_2: "",
-    score_key_3: "",
+    score_key_0: "MISSED",
+    score_key_1: "MISSED",
+    score_key_2: "MISSED",
+    score_key_3: "MISSED",
     nextTileToType: 0,
     missed: 0,
     score: 0,
@@ -339,6 +339,14 @@ button.active {
     box-shadow: 0px 0 #D1859F;
   }
 }
+.key_score__container {
+  @apply absolute;
+  bottom: 5%;
+  @apply w-full;
+  @apply flex justify-around;
+  @apply text-sm md:text-xl;
+}
+
 .row
 {
   display: flex; /* equal height of the children */
