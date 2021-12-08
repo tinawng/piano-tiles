@@ -306,17 +306,12 @@ export default {
 </script>
 
 <style lang="postcss">
-body
-{
-  background: center no-repeat url("../assets/img/main-cover.jpeg");
-}
 .page__container {
   @apply h-full max-w-2xl;
   @apply mx-auto;
   @apply flex flex-col justify-center;
 }
 canvas {
-  @apply rounded-lg;
   box-shadow: 0 15px 70px rgb( 0 0 0 / 10% );
   background: rgba( 230, 171, 189, 0.69 ); {/*rgba( 255, 255, 255, 0.69 );*/}
 }
@@ -350,16 +345,6 @@ button.active {
   @media (min-width: 1024px) {
     box-shadow: 0px 0 #D1859F;
   }
-}
-</style>
-
-<style lang="postcss">
-html,
-body,
-#__nuxt,
-#__layout
-{
-  @apply h-full;
 }
 .row
 {

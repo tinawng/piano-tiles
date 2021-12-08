@@ -1,3 +1,5 @@
+html, body, #__nuxt, #__layout
+{ @apply h-full; }
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -10,10 +12,14 @@ html {
 
   font-family: "Futura";
 }
+body
+{
+  background: center no-repeat url("~assets/img/background.webp");
+}
 
 @font-face {
   font-family: "Futura";
   font-display: swap;
   src: local(''),
-    url('../../static/fonts/futura-pt-heavy.woff2') format('woff2');
+    url('~assets/fonts/futura-pt-heavy.woff2') format('woff2');
 }
