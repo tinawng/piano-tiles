@@ -217,7 +217,7 @@ export default {
           Swal.fire({
           customClass:'lost',
           title: '<p style="color:rgba(136, 39, 34, 1)">You lost</p>',
-          background: `rgba(255, 255, 255, 0.3)`,
+          background: `rgba(255, 255, 255, 0.9)`,
           showConfirmButton: false,
           imageUrl: require('/assets/img/game-declined.png'),
 
