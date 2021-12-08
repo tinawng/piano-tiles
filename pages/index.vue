@@ -323,7 +323,7 @@ button {
   @media (min-width: 1024px) {
     @apply h-20 w-20;
     background: linear-gradient( 145deg, #DDD, #FFF );
-    box-shadow: 0px 10px #560E36;
+    box-shadow: 0px 5px #560E36;
     font-size: 3em;
     font-weight: 900;
   }
