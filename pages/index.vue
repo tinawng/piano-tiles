@@ -200,7 +200,7 @@ export default {
       Swal.fire({
         title: `<div class = 'result' ><p>You are ${
           this.percentage
-        }% as skilled as the king!</p><img style="margin: auto;" src="${require("/assets/img/crown.png")}"/><p>Buy your first NFT<br>on <a href='https://piano-king.com' style='color: cyan;'>piano-king.com</a>!</p></div>`,
+        }% as skilled as the king!</p><img style="margin: auto;" src="${require("/assets/img/crown.webp")}"/><p>Buy your first NFT<br>on <a href='https://piano-king.com' style='color: cyan;'>piano-king.com</a>!</p></div>`,
         background: `linear-gradient(#020032, #E6ABBD)`, //background: `#E6ABBD`,
         footer: `
           <p>Share</p>
@@ -208,7 +208,7 @@ export default {
           <img src="${require("../assets/img/facebook.svg")}" onclick="click_social_media(\'facebook-d\')">
           <p>or download </p><img src="${require("../assets/img/download.svg")}" onclick="downloadscreenshot()">
         `,
-        imageUrl: require("/assets/img/FEqSaeQWYAcu0ln.jpeg"),
+        imageUrl: require("/assets/img/angel.webp"),
         showConfirmButton: false,
         color: "#E6ABBD",
         imageWidth: 400,
