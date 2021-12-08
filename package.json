@@ -7,6 +7,10 @@
     "generate": "nuxt generate --modern"
   },
   "dependencies": {
+    "html2canvas": "^1.3.3",
+    "jspdf": "^2.4.0",
+    "sweetalert2": "^11.3.0",
+    "vue-social-sharing": "^3.0.8",
     "vue2-touch-events": "https://github.com/tinawng/vue-touch-events"
   },
   "devDependencies": {
