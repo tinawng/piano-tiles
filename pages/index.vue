@@ -42,12 +42,12 @@
           Share on Facebook
       </ShareNetwork>
     </div>
-      <p id="perfect" class='gradient-pink' style="position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD;">
-      Score: {{ score }}
-      <br>Max Perfects: {{ maxPerfects }}
-      <br>Perfects: {{ perfects }}
-      <br>Missed: {{ missed }}
-      </p>
+      <div id="perfect" class='gradient-pink' style="position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD;">
+        <p class='gradient-pink'>Score: {{ score }}
+        <br>Max Perfects: {{ maxPerfects }}
+        <br>Perfects: {{ perfects }}
+        <br>Missed: {{ missed }}</p>
+      </div>
   </div>
 </template>
 
@@ -141,8 +141,6 @@ export default {
     this.ctx.stroke();
   },
 
-
-
   methods: {
     draw(timestamp) {
       if (!this.start_timestamp) this.start_timestamp = timestamp;
@@ -190,7 +188,7 @@ export default {
     },
     EndGame(){
       Swal.fire({
-        title: `<div class = 'result' ><p>You are ${this.percentage}% as skilled as the king!</p><img src="${require('/assets/img/crown.png')}"></div>`,
+        title: `<div class = 'result' ><p>You are ${this.percentage}% as skilled as the king!</p><img src="${require('/assets/img/crown.png')}<p>Buy your first NFT on <a href='https://piano-king.com'>piano-king.com</a>!</p>"></div>`,
         background: `#E6ABBD`, //url("${require('/assets/img/background-popup.jpeg')}")`,
         footer: `<p>Share on social media: </p><img src="${require('/assets/img/twitter.svg')}" onclick="click_social_media(\'twitter-d\')"><img src="${require('../assets/img/tiktok.svg')}" onclick="click_social_media(\'facebook-d\')"> or download : <img src="${require('../assets/img/download.svg')}" onclick="downloadscreenshot()">`,
         imageUrl: require('/assets/img/FEqSaeQWYAcu0ln.jpeg'),
@@ -210,7 +208,7 @@ export default {
         // showConfirmButton: false,
       }).then((result) => {
         Swal.fire({
-          html:'<p style="font-size: 256px;"><strong></strong></p>' ,
+          html:'<p style="font-size: 288px;"><strong></strong></p>' ,
           timer: 4000,
           background: `transparent`,
           confirmButtonColor: 'transparent',
@@ -339,7 +337,7 @@ button {
 button.active {
   background: linear-gradient( 145deg, #CACACA, #F0F0F0 );
   box-shadow: 0px 0 #D1859F;
-  transform: translateY(3px);
+  transform: translateY(5px);
 
   @media (min-width: 1024px) {
     box-shadow: 0px 0 #D1859F;
