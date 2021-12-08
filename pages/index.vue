@@ -81,9 +81,9 @@ export default {
     score: 100,
     perfects: 0,
     maxPerfects: 0,
-    score_key_0: "MISSED",
-    score_key_1: "MISSED",
-    score_key_2: "MISSED",
+    score_key_0: "",
+    score_key_1: "",
+    score_key_2: "",
     score_key_3: "MISSED",
     nextTileToType: 0,
     missed: 0,
@@ -343,8 +343,11 @@ button.active {
   @apply absolute;
   bottom: 5%;
   @apply w-full;
-  @apply flex justify-around;
+  @apply flex justify-around text-center;
   @apply text-sm md:text-xl;
+}
+.key_score__container * {
+  flex-basis: 25%;
 }
 
 .row
