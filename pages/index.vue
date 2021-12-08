@@ -11,7 +11,7 @@
         <button ref="key_2" v-touch:start="() => { keyDown(2) }" v-touch:end="() => { keyUp(2) }">J</button>
         <button ref="key_3" v-touch:start="() => { keyDown(3) }" v-touch:end="() => { keyUp(3) }">K</button>
       </div>
-      <div class="row" style="position: absolute; bottom: 0; width: 100%; height: 100px; display: flex; align-items: center; text-align: center; font-size: 1.8em;">
+      <div class="row" style="position: absolute; bottom: 0; width: 100%; height: 100px; display: flex; align-items: center; text-align: center; font-size: 2em; background-color: #020032;">
         <div class="col "><p>{{this.score_key_0}}</p></div>
         <div class="col "><p>{{this.score_key_1}}</p></div>
         <div class="col "><p>{{this.score_key_2}}</p></div>
