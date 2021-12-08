@@ -1,6 +1,6 @@
 <template>
   <div ref="page" class="page__container">
-    <button  id ='start-music' @click="unlockAudio" style='display: none' >coucou</button>
+    <button id ='start-music' @click="unlockAudio" style='display: none' >coucou</button>
     <div class="relative">
       <canvas ref="canvas"></canvas>
       <div class="buttons__container">
@@ -143,9 +143,8 @@ export default {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
       const audioCtx = new AudioContext();
       const sound = new Audio('/chicago.mp3');
+      sound.currentTime = 0;
       sound.play();
-
-
     },
     draw(timestamp) {
       if (!this.start_timestamp) this.start_timestamp = timestamp;
