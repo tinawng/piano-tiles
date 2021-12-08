@@ -3,7 +3,7 @@
     <div class="relative">
       <canvas ref="canvas"></canvas>
       <div class="absolute top-0">
-        <audio ref="audio_player" :src="[browser == 'safari' ? '/chicago.ogg' : '/chicago.aac'"/>
+        <audio ref="audio_player" :src="[browser == 'safari' ? '/chicago.ogg' : '/chicago.aac']"/>
       </div>
       <div class="buttons__container">
         <button ref="key_0" v-touch:start="() => { keyDown(0) }" v-touch:end="() => { keyUp(0) }">D</button>
