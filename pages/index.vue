@@ -24,7 +24,7 @@
           network="twitter"
           url="https://www.piano-king.com"
           title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
-          quote="The hot reload is so fast it\'s near instant. - Evan You"
+          quote="The hot reload is so fast it's near instant. - Evan You"
           hashtags="vuejs,vite"
         >
           Share on Twitter
@@ -36,7 +36,7 @@
           network="facebook"
           url="https://www.piano-king.com"
           title="I just scored 97% on the piano tiles game of Sofiane Pamart. Play on:"
-          quote="The hot reload is so fast it\'s near instant. - Evan You"
+          quote="The hot reload is so fast it's near instant. - Evan You"
           hashtags="vuejs,vite"
         >
           Share on Facebook
