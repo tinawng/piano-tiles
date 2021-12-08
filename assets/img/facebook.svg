@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Facebook</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#E7ACBE" offset="0%"></stop>
+            <stop stop-color="#D73F73" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#E7ACBE" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Facebook" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" fill="url(#linearGradient-1)" cx="21" cy="21" r="21"></circle>
+        <path d="M25.4444444,8.77777778 C26.7083333,8.77777778 28.0572917,8.94791667 29.3424479,9.13932292 L29.8888889,9.22222222 L29.8888889,14.3333333 L27.3333333,14.3333333 C24.9677419,14.3333333 24.3711412,15.4779743 24.3351124,16.9616439 L24.3333333,17.1111111 L24.3333333,21 L29.6666667,21 L28.7777778,26.5555556 L24.3333333,26.5555556 L24.3331928,41.7369387 C23.2476281,41.9100657 22.1343167,42 21,42 C19.8656833,42 18.7523719,41.9100657 17.6668072,41.7369387 L17.6666667,26.5555556 L12.6666667,26.5555556 L12.6666667,21 L17.6666667,21 L17.6666667,16.5555556 C17.6666667,11.5555556 20.8888889,8.77777778 25.4444444,8.77777778 Z" id="Path" fill="url(#linearGradient-2)"></path>
+    </g>
+</svg>
