@@ -219,7 +219,7 @@ export default {
 
       this.$refs.audio_player.play();
       requestAnimationFrame(this.draw);
-      setTimeout(() => this.EndGame(), 63000);
+      setTimeout(() => this.EndGame(), 61062.415);
       this.is_playing = true;
     },
 
