@@ -42,7 +42,7 @@
           Share on Facebook
       </ShareNetwork>
     </div>
-      <div id="perfect" style="position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD; text-shadow: 1px 1px rgba(209,133,159, 0.80), 2px 2px rgba(209,133,159, 0.60), 3px 3px rgba(209,133,159, 0.40), 4px 4px rgba(209,133,159, 0.20), 5px 5px rgba(209,133,159, 0.00);"> <!--#D1859F--> <!--text-shadow: 1px 1px rgba(209,133,159, 0.80), 2px 2px rgba(209,133,159, 0.60), 3px 3px rgba(209,133,159, 0.40), 4px 4px rgba(209,133,159, 0.20), 5px 5px rgba(209,133,159, 0.00)-->
+      <div id="perfect" class='gradient-pink' style="position: absolute; top: 30px; right: 30px; font-size: 40px; text-align: right; color: #E6ABBD;"> 
       Score: {{ score }}
       <br>Max Perfects: {{ maxPerfects }}
       <br>Perfects: {{ perfects }}
@@ -59,6 +59,7 @@ import Vue from 'vue';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
+let timerInterval;
 document.click_social_media = function(css_selector) {
   document.getElementById(css_selector).click()
 }
@@ -203,14 +204,33 @@ export default {
     },
     StartGame(){
       Swal.fire({
-        title: 'Play against the king?',
-        text: 'He is a world-class player.\nMany a man has only ever dreamt of reaching his level of mastery.\nAre you up to the challenge?',
-        icon: 'question',
-        confirmButtonText: 'Play!',
+        background: `transparent`,
+        confirmButtonColor: 'transparent',
+        confirmButtonText: 'Play against the Piano King!',
+        customClass: 'start-game gradient-pink',
+        // showConfirmButton: false,
       }).then((result) => {
-        if (result.isConfirmed) {
+        Swal.fire({
+          html:'<p style="font-size:248px"><strong></strong></p>' ,
+          timer: 4000,
+          background: `transparent`,
+          confirmButtonColor: 'transparent',
+          timerProgressBar: false,
+          showConfirmButton: false,
+          customClass: 'gradient-pink-big',
+          didOpen: () => {
+            timerInterval = setInterval(() => {
+              Swal.getHtmlContainer().querySelector('strong')
+                .textContent = (Swal.getTimerLeft() / 1000)
+                  .toFixed(0)
+            }, 100)
+          },
+          willClose: () => {
+            clearInterval(timerInterval)
+          }
+        }).then((result) => {  
           this.play()
-        }
+        })     
       })
     },
     play() {
@@ -356,8 +376,22 @@ body,
 .swal2-footer > * {
     padding: 10px;
 }
+.swal2-container  *{
+    color: white;
+}
 .swal2-footer > img {
     cursor: pointer;
+}
+.start-game button {
+    width: 100%;
+    font-size: 40px !important;
+    height: 100%;
+}
+.gradient-pink{
+  text-shadow: 1px 1px rgba(209,133,159, 0.80), 2px 2px rgba(209,133,159, 0.60), 3px 3px rgba(209,133,159, 0.40), 4px 4px rgba(209,133,159, 0.20), 5px 5px rgba(209,133,159, 0.00);
+}
+.gradient-pink-big{
+text-shadow: 1px 1px rgba(209,133,159, 1.00), 2px 2px rgba(209,133,159, 1.00), 3px 3px rgba(209,133,159, 1.00), 4px 4px rgba(209,133,159, 1.00), 5px 5px rgba(209,133,159, 1.00), 6px 6px rgba(209,133,159, 0.99), 7px 7px rgba(209,133,159, 0.98), 8px 8px rgba(209,133,159, 0.97), 9px 9px rgba(209,133,159, 0.96), 10px 10px rgba(209,133,159, 0.94), 11px 11px rgba(209,133,159, 0.91), 12px 12px rgba(209,133,159, 0.87), 13px 13px rgba(209,133,159, 0.82), 14px 14px rgba(209,133,159, 0.76), 15px 15px rgba(209,133,159, 0.68), 16px 16px rgba(209,133,159, 0.59), 17px 17px rgba(209,133,159, 0.48), 18px 18px rgba(209,133,159, 0.34), 19px 19px rgba(209,133,159, 0.19), 20px 20px rgba(209,133,159, 0.00)
 }
 .swal2-popup.swal2-modal.swal2-show {
     margin: 3px;
