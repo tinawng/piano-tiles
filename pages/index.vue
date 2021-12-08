@@ -309,6 +309,7 @@ button {
   @apply transition-all;
   background: linear-gradient(145deg, #e6e6e6, #ffffff);
   box-shadow: 12px 12px 24px #d1d1d1, -12px -12px 24px #ffffff;
+  font-size: 2em;
 
   @media (min-width: 1024px) {
     @apply h-20 w-20;
