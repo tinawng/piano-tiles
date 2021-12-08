@@ -344,10 +344,10 @@ button {
 }
 button.active {
   background: linear-gradient( 145deg, #CACACA, #F0F0F0 );
-  box-shadow: 0px 1px #D1859F;
+  box-shadow: 0px 0 #D1859F;
 
   @media (min-width: 1024px) {
-    box-shadow: 0px 5px #D1859F;
+    box-shadow: 0px 0 #D1859F;
   }
 }
 </style>
